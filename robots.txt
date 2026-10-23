@@ -1,0 +1,38 @@
+User-Agent: GPTBot
+User-Agent: ChatGPT-User
+User-Agent: ClaudeBot
+User-Agent: Claude-User
+User-Agent: anthropic-ai
+User-Agent: CCBot
+User-Agent: Google-Extended
+User-Agent: Applebot-Extended
+User-Agent: Bytespider
+User-Agent: meta-externalagent
+User-Agent: Meta-ExternalFetcher
+User-Agent: Perplexity-User
+User-Agent: cohere-ai
+User-Agent: cohere-training-data-crawler
+User-Agent: Diffbot
+User-Agent: ImagesiftBot
+User-Agent: Omgilibot
+User-Agent: Timpibot
+User-Agent: Amazonbot
+User-Agent: HTTrack
+User-Agent: Wget
+User-Agent: SiteSucker
+User-Agent: WebCopier
+User-Agent: Offline Explorer
+User-Agent: Teleport Pro
+Disallow: /
+
+User-Agent: *
+Allow: /
+Disallow: /api/
+Disallow: /bedankt/
+Disallow: /tarieven/
+Disallow: /en/thank-you/
+Disallow: /en/rates/
+Disallow: /de/danke/
+Disallow: /de/preise/
+
+Sitemap: https://aimflow.nl/sitemap.xml
