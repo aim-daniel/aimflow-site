@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ruben Doldersum · AIM Software · Delsum</title>
+<meta name="description" content="Wir bringen Ihr Produkt in 3D auf Ihre eigene Website und automatisieren die Arbeit nach der Anfrage, bis zur Rechnung.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#08090b">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:title" content="Ruben Doldersum · AIM Software · Delsum">
+<meta property="og:description" content="Wir bringen Ihr Produkt in 3D auf Ihre eigene Website und automatisieren die Arbeit nach der Anfrage, bis zur Rechnung.">
+<meta property="og:image" content="https://aimflow.nl/og/aim-flow-de.png">
+<meta property="og:url" content="https://aimflow.nl/card/ruben/de/">
+<link rel="alternate" hreflang="en" href="https://aimflow.nl/card/ruben/">
+<link rel="alternate" hreflang="de" href="https://aimflow.nl/card/ruben/de/">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="/apple-icon.png">
+<style>/* A digital business card on phone width: who, one sentence, two actions, what we do, what happens next, contact.
+   Calm and dark like the new AIM look (baka.glass grammar, the AIM ice-blue accent). System fonts: it opens instantly. */
+:root {
+  color-scheme: dark;
+  --bg: #08090b;
+  --panel: #0e1116;
+  --line: rgba(255, 255, 255, .08);
+  --line-2: rgba(255, 255, 255, .14);
+  --fg: #f4f5f7;
+  --muted: #a3acb7;
+  --dim: #707a86;
+  --ice: #b9d6ea;
+  --ice-rgb: 185, 214, 234;
+  --cyan-rgb: 103, 227, 240;
+  --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, "SF Mono", SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--bg) radial-gradient(520px 360px at 50% -120px, rgba(var(--cyan-rgb), .13), transparent 70%) no-repeat;
+  color: var(--fg);
+  font: 16px/1.55 var(--sans);
+  -webkit-font-smoothing: antialiased;
+  -webkit-text-size-adjust: 100%;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+  padding-top: calc(12px + env(safe-area-inset-top, 0px));
+  padding-bottom: calc(40px + env(safe-area-inset-bottom, 0px));
+}
+a { color: inherit; -webkit-tap-highlight-color: transparent; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+img { max-width: 100%; display: block; }
+:focus-visible { outline: 2px solid var(--ice); outline-offset: 3px; border-radius: 10px; }
+.card { max-width: 440px; margin: 0 auto; display: flex; flex-direction: column; gap: 34px; }
+
+.top { display: flex; align-items: center; justify-content: space-between; }
+.logo { width: 112px; color: var(--fg); line-height: 0; }
+.logo svg { width: 100%; height: auto; }
+.lang { display: flex; gap: 2px; padding: 3px; border: 1px solid var(--line); border-radius: 999px; }
+.lang a, .lang span { font: 600 11px/1 var(--mono); letter-spacing: .12em; padding: 7px 10px; border-radius: 999px; text-decoration: none; color: var(--dim); }
+.lang span { color: var(--fg); background: rgba(255, 255, 255, .07); }
+
+/* The first screen fills the iPhone: logo, who, one sentence, two actions, and a hint that there is more. */
+.hero {
+  position: relative; display: flex; flex-direction: column;
+  min-height: calc(100vh - 12px - env(safe-area-inset-top, 0px));
+  min-height: calc(100svh - 12px - env(safe-area-inset-top, 0px));
+  padding-bottom: 10px;
+}
+.hero::before {
+  content: ""; position: absolute; inset: 60px -40px auto; height: 380px; z-index: -1; pointer-events: none;
+  background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px);
+  background-size: 34px 34px;
+  -webkit-mask-image: radial-gradient(closest-side, #000, transparent); mask-image: radial-gradient(closest-side, #000, transparent);
+}
+.who { flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 0; padding-block: 28px 12px; }
+.who h1 { margin: 6px 0 0; font-size: 32px; line-height: 1.1; font-weight: 650; letter-spacing: -.025em; }
+.role { margin: 6px 0 0; color: var(--muted); font-size: 15px; line-height: 1.4; max-width: 30ch; }
+.who .pitch { margin-top: 22px; }
+.who .actions { width: 100%; margin-top: 26px; }
+.hello { margin: 22px 0 0; font: 600 11px/1.3 var(--mono); letter-spacing: .16em; text-transform: uppercase; color: var(--ice); }
+.face { width: 112px; height: 112px; border-radius: 50%; overflow: hidden; background: #e7ebef; box-shadow: 0 0 0 1px var(--line-2), 0 0 0 6px var(--bg), 0 0 0 7px rgba(var(--ice-rgb), .45), 0 20px 60px -10px rgba(var(--cyan-rgb), .35); display: grid; place-items: center; }
+.more { align-self: center; display: inline-flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 14px; color: var(--dim); text-decoration: none; font: 600 10.5px/1 var(--mono); letter-spacing: .14em; text-transform: uppercase; }
+.more svg { width: 18px; height: 18px; }
+@media (prefers-reduced-motion: no-preference) { .more svg { animation: nudge 1.8s ease-in-out 3 1.6s; } }
+@keyframes nudge { 50% { transform: translateY(4px); } }
+
+/* The loading screen with the logo, as in the AIM OS app: about a second, by CSS alone, never under reduced motion. */
+.splash { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; background: var(--bg); animation: splash-out .35s ease .85s forwards; pointer-events: none; }
+.splash__logo { width: 168px; color: var(--fg); line-height: 0; filter: drop-shadow(0 0 22px rgba(var(--cyan-rgb), .35)); animation: splash-in .5s ease both; }
+.splash__logo svg { width: 100%; height: auto; }
+@keyframes splash-in { from { opacity: 0; transform: scale(.96); } to { opacity: 1; transform: none; } }
+@keyframes splash-out { to { opacity: 0; visibility: hidden; } }
+@media (prefers-reduced-motion: reduce) { .splash { display: none; } }
+.face img { width: 100%; height: 100%; object-fit: cover; }
+.initials { width: 100%; height: 100%; display: grid; place-items: center; background: linear-gradient(150deg, #1a2330, #0e1116); color: var(--ice); font: 600 34px/1 var(--sans); letter-spacing: .02em; }
+.pitch { margin: 0; font-size: 18.5px; line-height: 1.45; letter-spacing: -.01em; text-wrap: balance; }
+
+.actions { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.btn { display: flex; align-items: center; justify-content: center; min-height: 52px; touch-action: manipulation; padding: 0 12px; border-radius: 999px; font: 600 15px/1 var(--sans); text-decoration: none; text-align: center; border: 1px solid transparent; }
+.btn--light { background: var(--fg); color: #08090b; }
+.btn--ghost { border-color: var(--line-2); background: rgba(255, 255, 255, .03); }
+
+.block { display: flex; flex-direction: column; gap: 12px; }
+.label { margin: 0; font: 600 11px/1.3 var(--mono); letter-spacing: .14em; text-transform: uppercase; color: var(--dim); }
+.product { display: grid; grid-template-columns: 42px 1fr; gap: 14px; padding: 16px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255, 255, 255, .02); text-decoration: none; color: inherit; }
+.product--core { display: flex; flex-direction: column; gap: 0; padding: 0; overflow: hidden; }
+.product--core .row { display: grid; grid-template-columns: 42px 1fr; gap: 14px; padding: 16px; }
+.shot { position: relative; display: block; background: #07090c; border-bottom: 1px solid var(--line); }
+.shot img { width: 100%; height: auto; aspect-ratio: 842 / 400; }
+.chip { position: absolute; left: 12px; top: 12px; display: inline-flex; align-items: center; gap: 7px; padding: 6px 10px; border-radius: 999px; background: rgba(7, 9, 12, .72); border: 1px solid rgba(var(--ice-rgb), .25); font: 600 10.5px/1 var(--mono); letter-spacing: .1em; text-transform: uppercase; }
+.chip i { width: 6px; height: 6px; border-radius: 50%; background: #7fe0b0; box-shadow: 0 0 8px #7fe0b0; }
+.ico { width: 42px; height: 42px; border-radius: 11px; display: grid; place-items: center; background: rgba(var(--ice-rgb), .08); border: 1px solid rgba(var(--ice-rgb), .18); color: var(--ice); }
+.ico svg { width: 21px; height: 21px; }
+.txt { display: flex; flex-direction: column; gap: 4px; min-width: 0; }
+.txt strong { font-size: 15.5px; font-weight: 650; }
+.txt strong em { font-style: normal; font-weight: 500; color: var(--muted); }
+.txt > span { color: var(--muted); font-size: 14.5px; line-height: 1.45; }
+.txt .go { color: var(--ice); font-weight: 600; font-size: 14px; display: inline-flex; align-items: center; gap: 6px; margin-top: 4px; }
+.go svg { width: 13px; height: 13px; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.tags span { font-size: 12.5px; color: var(--fg); padding: 4px 9px; border: 1px solid var(--line-2); border-radius: 999px; }
+
+.steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 0; border: 1px solid var(--line); border-radius: 16px; background: rgba(255, 255, 255, .02); }
+.steps li { display: grid; grid-template-columns: 28px 1fr; gap: 14px; padding: 14px 16px; }
+.steps li + li { border-top: 1px solid var(--line); }
+.steps .n { width: 28px; height: 28px; border-radius: 50%; display: grid; place-items: center; border: 1px solid rgba(var(--ice-rgb), .4); color: var(--ice); font: 600 12px/1 var(--mono); }
+.steps strong { font-size: 15px; }
+.steps p { margin: 2px 0 0; color: var(--muted); font-size: 14px; line-height: 1.45; }
+
+.contact { margin: 0; border: 1px solid var(--line); border-radius: 16px; }
+.contact div { display: grid; grid-template-columns: 76px 1fr; gap: 12px; padding: 12px 16px; }
+.contact div + div { border-top: 1px solid var(--line); }
+.contact dt { font: 600 10.5px/1.9 var(--mono); letter-spacing: .12em; text-transform: uppercase; color: var(--dim); }
+.contact dd { margin: 0; min-width: 0; font-size: 15px; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; -webkit-user-select: text; user-select: text; }
+.contact a { text-decoration: none; }
+.contact .aside { color: var(--dim); font-size: 12.5px; white-space: nowrap; }
+
+footer { display: flex; justify-content: space-between; gap: 12px; padding-top: 14px; border-top: 1px solid var(--line); color: var(--dim); font-size: 12.5px; }
+@media (max-width: 360px) { .actions { grid-template-columns: 1fr; } .contact div { grid-template-columns: 1fr; gap: 0; } }
+
+/* What we do: the 3D across the width, AIM CORE and AIM FLOW side by side under it. */
+.shotcard { position: relative; display: block; border: 1px solid var(--line-2); border-radius: 16px; overflow: hidden; background: #07090c; text-decoration: none; }
+.shotcard img { width: 100%; height: auto; aspect-ratio: 842 / 400; }
+.shotcard .cap { position: absolute; right: 10px; bottom: 10px; display: inline-flex; align-items: center; gap: 6px; padding: 7px 11px; border-radius: 999px; background: rgba(7, 9, 12, .78); border: 1px solid rgba(var(--ice-rgb), .25); color: var(--ice); font-size: 13px; font-weight: 600; }
+.shotcard .cap svg { width: 12px; height: 12px; }
+.duo { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.tile { display: flex; flex-direction: column; gap: 6px; padding: 14px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255, 255, 255, .02); text-decoration: none; color: inherit; min-width: 0; }
+.tile .ico { margin-bottom: 4px; }
+.tile strong { font-size: 15px; font-weight: 700; letter-spacing: .02em; }
+.tile em { font-style: normal; color: var(--ice); font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+.tile > span:last-child { color: var(--muted); font-size: 13.5px; line-height: 1.45; }
+</style>
+</head>
+<body>
+<div class="splash" aria-hidden="true"><span class="splash__logo"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.49 100" aria-hidden="true">
+<path d="M 39 4 L 67 4 L 90.28 67 L 88.76 71 L 17.24 71 L 15.72 67 Z M 40.67 59 L 65.33 59 L 53 25.65 Z M 11.65 78 L 33.65 78 L 27 96 L 9 96 L 6.48 92 Z M 99.52 92 L 97 96 L 79 96 L 72.35 78 L 94.35 78 Z" fill="currentColor" fill-rule="evenodd"/>
+<svg x="130" y="22.77" width="96.49" height="54.45" viewBox="0 0 96.49 54.45"><g fill="currentColor">
+<g transform="translate(0, 39.2)">
+<path d="M14.616 -39.2H21.56L35.896 0.0H28.168L24.976 -8.68H11.200000000000001L8.008000000000001 0.0H0.28ZM23.296 -14.952 18.088 -29.848H17.976L12.936 -14.952Z"/>
+<path d="M40.096000000000004 -39.2H47.712V0.0H40.096000000000004Z"/>
+<path d="M55.272000000000006 -39.2H62.328L73.976 -13.888H74.08800000000001L85.792 -39.2H92.84800000000001V0.0H85.512V-23.856H85.4L76.384 -5.488H71.68L62.720000000000006 -23.856H62.608000000000004V0.0H55.272000000000006Z"/>
+</g>
+<g transform="translate(0, 54.45)">
+<path d="M0.75 -1.2125000000000001V-2.1625H1.9375V-1.6L2.475 -1.05H5.3375L5.8875 -1.6125V-3.4125L5.3375 -3.95H1.9875L0.775 -5.175000000000001V-7.5375000000000005L1.9875 -8.75H5.7625L6.9750000000000005 -7.5375000000000005V-6.575H5.800000000000001V-7.15L5.25 -7.7H2.5125L1.9625000000000001 -7.15V-5.550000000000001L2.5125 -5.0H5.862500000000001L7.075 -3.7875V-1.2375L5.8375 0.0H1.9625000000000001Z"/>
+<path d="M13.110785714285715 -1.4000000000000001V-7.3500000000000005L14.510785714285715 -8.75H18.635785714285717L20.035785714285716 -7.3500000000000005V-1.4000000000000001L18.635785714285717 0.0H14.510785714285715ZM18.060785714285714 -1.05 18.835785714285716 -1.8250000000000002V-6.925000000000001L18.060785714285714 -7.7H15.085785714285715L14.310785714285714 -6.925000000000001V-1.8250000000000002L15.085785714285715 -1.05Z"/>
+<path d="M26.32157142857143 -8.75H32.07157142857143V-7.7H27.52157142857143V-4.800000000000001H31.47157142857143V-3.75H27.52157142857143V0.0H26.32157142857143Z"/>
+<path d="M39.86985714285715 -7.7125H37.23235714285715V-8.75H43.70735714285715V-7.7125H41.069857142857146V0.0H39.86985714285715Z"/>
+<path d="M48.993142857142864 -8.75H50.20564285714286L51.493142857142864 -1.7625000000000002H51.530642857142865L53.50564285714287 -8.75H54.54314285714287L56.468142857142865 -1.7625000000000002H56.493142857142864L57.75564285714287 -8.75H58.968142857142865L57.19314285714287 0.0H55.98064285714287L54.04314285714287 -6.987500000000001H54.00564285714287L51.98064285714286 0.0H50.76814285714286Z"/>
+<path d="M67.26642857142858 -8.75H68.46642857142858L71.61642857142859 0.0H70.37892857142859L69.60392857142858 -2.225H66.14142857142858L65.36642857142859 0.0H64.12892857142859ZM69.29142857142858 -3.2375000000000003 67.87892857142859 -7.325H67.85392857142858L66.46642857142858 -3.2375000000000003Z"/>
+<path d="M83.70221428571429 -2.75V0.0H82.50221428571429V-2.45L81.4647142857143 -3.5625H78.4772142857143V0.0H77.2772142857143V-8.75H82.43971428571429L83.6522142857143 -7.5375000000000005V-4.8125L82.68971428571429 -3.85ZM78.4772142857143 -4.5875H81.9022142857143L82.4647142857143 -5.1375V-7.175000000000001L81.9022142857143 -7.7250000000000005H78.4772142857143Z"/>
+<path d="M90.05050000000001 -8.75H95.92550000000001V-7.7H91.25050000000002V-4.9125000000000005H95.56300000000002V-3.875H91.25050000000002V-1.05H95.92550000000001V0.0H90.05050000000001Z"/>
+</g>
+</g></svg>
+</svg>
+</span></div>
+<main class="card">
+ <section class="hero">
+  <header class="top">
+    <span class="logo" aria-label="AIM Software"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.49 100" aria-hidden="true">
+<path d="M 39 4 L 67 4 L 90.28 67 L 88.76 71 L 17.24 71 L 15.72 67 Z M 40.67 59 L 65.33 59 L 53 25.65 Z M 11.65 78 L 33.65 78 L 27 96 L 9 96 L 6.48 92 Z M 99.52 92 L 97 96 L 79 96 L 72.35 78 L 94.35 78 Z" fill="currentColor" fill-rule="evenodd"/>
+<svg x="130" y="22.77" width="96.49" height="54.45" viewBox="0 0 96.49 54.45"><g fill="currentColor">
+<g transform="translate(0, 39.2)">
+<path d="M14.616 -39.2H21.56L35.896 0.0H28.168L24.976 -8.68H11.200000000000001L8.008000000000001 0.0H0.28ZM23.296 -14.952 18.088 -29.848H17.976L12.936 -14.952Z"/>
+<path d="M40.096000000000004 -39.2H47.712V0.0H40.096000000000004Z"/>
+<path d="M55.272000000000006 -39.2H62.328L73.976 -13.888H74.08800000000001L85.792 -39.2H92.84800000000001V0.0H85.512V-23.856H85.4L76.384 -5.488H71.68L62.720000000000006 -23.856H62.608000000000004V0.0H55.272000000000006Z"/>
+</g>
+<g transform="translate(0, 54.45)">
+<path d="M0.75 -1.2125000000000001V-2.1625H1.9375V-1.6L2.475 -1.05H5.3375L5.8875 -1.6125V-3.4125L5.3375 -3.95H1.9875L0.775 -5.175000000000001V-7.5375000000000005L1.9875 -8.75H5.7625L6.9750000000000005 -7.5375000000000005V-6.575H5.800000000000001V-7.15L5.25 -7.7H2.5125L1.9625000000000001 -7.15V-5.550000000000001L2.5125 -5.0H5.862500000000001L7.075 -3.7875V-1.2375L5.8375 0.0H1.9625000000000001Z"/>
+<path d="M13.110785714285715 -1.4000000000000001V-7.3500000000000005L14.510785714285715 -8.75H18.635785714285717L20.035785714285716 -7.3500000000000005V-1.4000000000000001L18.635785714285717 0.0H14.510785714285715ZM18.060785714285714 -1.05 18.835785714285716 -1.8250000000000002V-6.925000000000001L18.060785714285714 -7.7H15.085785714285715L14.310785714285714 -6.925000000000001V-1.8250000000000002L15.085785714285715 -1.05Z"/>
+<path d="M26.32157142857143 -8.75H32.07157142857143V-7.7H27.52157142857143V-4.800000000000001H31.47157142857143V-3.75H27.52157142857143V0.0H26.32157142857143Z"/>
+<path d="M39.86985714285715 -7.7125H37.23235714285715V-8.75H43.70735714285715V-7.7125H41.069857142857146V0.0H39.86985714285715Z"/>
+<path d="M48.993142857142864 -8.75H50.20564285714286L51.493142857142864 -1.7625000000000002H51.530642857142865L53.50564285714287 -8.75H54.54314285714287L56.468142857142865 -1.7625000000000002H56.493142857142864L57.75564285714287 -8.75H58.968142857142865L57.19314285714287 0.0H55.98064285714287L54.04314285714287 -6.987500000000001H54.00564285714287L51.98064285714286 0.0H50.76814285714286Z"/>
+<path d="M67.26642857142858 -8.75H68.46642857142858L71.61642857142859 0.0H70.37892857142859L69.60392857142858 -2.225H66.14142857142858L65.36642857142859 0.0H64.12892857142859ZM69.29142857142858 -3.2375000000000003 67.87892857142859 -7.325H67.85392857142858L66.46642857142858 -3.2375000000000003Z"/>
+<path d="M83.70221428571429 -2.75V0.0H82.50221428571429V-2.45L81.4647142857143 -3.5625H78.4772142857143V0.0H77.2772142857143V-8.75H82.43971428571429L83.6522142857143 -7.5375000000000005V-4.8125L82.68971428571429 -3.85ZM78.4772142857143 -4.5875H81.9022142857143L82.4647142857143 -5.1375V-7.175000000000001L81.9022142857143 -7.7250000000000005H78.4772142857143Z"/>
+<path d="M90.05050000000001 -8.75H95.92550000000001V-7.7H91.25050000000002V-4.9125000000000005H95.56300000000002V-3.875H91.25050000000002V-1.05H95.92550000000001V0.0H90.05050000000001Z"/>
+</g>
+</g></svg>
+</svg>
+</span>
+    <nav class="lang" aria-label="Sprache"><a href="/card/ruben/" hreflang="en" lang="en">EN</a><span aria-current="page">DE</span></nav>
+  </header>
+
+  <div class="who">
+    <div class="face"><img src="/card/ruben/ruben.jpg" alt="Ruben Doldersum" width="240" height="240"></div>
+    <p class="hello">Schön, Sie kennenzulernen.</p>
+    <h1>Ruben Doldersum</h1>
+    <p class="role">Webdesign, AIM Software · Gründer, Delsum</p>
+    <p class="pitch">Wir bringen Ihr Produkt in 3D auf Ihre eigene Website und automatisieren die Arbeit nach der Anfrage, bis zur Rechnung.</p>
+    <div class="actions">
+      <a class="btn btn--light" href="/card/ruben/ruben-doldersum.vcf">Kontakt speichern</a>
+      <a class="btn btn--ghost" href="https://wa.me/31631528525?text=Hallo%20Ruben%2C%20wir%20haben%20uns%20beim%20Kivvo-Launch%20kennengelernt." target="_blank" rel="noopener">WhatsApp</a>
+    </div>
+  </div>
+  <a class="more" href="#what" aria-label="Was wir machen"><span>Was wir machen</span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3.5 6l4.5 4.5L12.5 6"/></svg></a>
+ </section>
+
+  <section class="block" id="what" aria-labelledby="what-l">
+    <p class="label" id="what-l">Was wir machen</p>
+    <a class="shotcard" href="https://aimflow.nl/de/aim-config/" target="_blank" rel="noopener">
+      <img src="/card/poolhaus.jpg" alt="AIM CORE: ein Poolhaus im 3D-Konfigurator, mit Maßen im Bild" width="842" height="400">
+      <span class="chip"><i></i>Live-3D</span>
+      <span class="cap">Live-Demo ansehen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 3h8v8M13 3 4 12"/></svg></span>
+    </a>
+    <div class="duo">
+      <a class="tile" href="https://aimflow.nl/de/aim-config/" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 2 9 5v10l-9 5-9-5V7Z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg></span><strong>AIM CORE</strong><em>3D-Konfiguratoren</em><span>Ihr Produkt in 3D auf Ihrer Website, aus Ihren CAD-Dateien.</span></a>
+      <a class="tile" href="https://aimflow.nl/de/" target="_blank" rel="noopener"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="18" r="2.5"/><path d="M8.5 6H14a3 3 0 0 1 3 3v6.5M15 13l2 2.5 2-2.5"/></svg></span><strong>AIM FLOW</strong><em>Website + Automatisierung</em><span>Eine Website, die gefunden wird, und Nachfassen bis zur Rechnung.</span></a>
+    </div>
+  </section>
+
+  <section class="block" aria-labelledby="own">
+    <p class="label" id="own">Eigenes Studio · Delsum</p>
+    <a class="product" href="https://delsum.nl" target="_blank" rel="noopener">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2.5"/><path d="M3 9h18M7 6.5h.01M10 6.5h.01"/></svg></span>
+      <span class="txt"><strong>Delsum</strong><span>Websites mit Charakter, aus Genemuiden.</span><span class="tags"><span>Websites und Webshops</span><span>SEO</span><span>Branding und Video</span></span><span class="go">delsum.nl besuchen <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M5 3h8v8M13 3 4 12"/></svg></span></span>
+    </a>
+  </section>
+  <section class="block" aria-labelledby="next">
+    <p class="label" id="next">So geht es weiter</p>
+    <ol class="steps"><li><span class="n">1</span><div><strong>Schreiben Sie uns</strong><p>Per WhatsApp oder E-Mail, wie es Ihnen passt.</p></div></li><li><span class="n">2</span><div><strong>Kostenloser AIM Scan</strong><p>Wir schauen uns Ihre Website, Ihr Produkt und die Arbeit nach der Anfrage an.</p></div></li><li><span class="n">3</span><div><strong>Ihr Vorschlag</strong><p>Sie wissen genau, was wir bauen würden und was es kostet.</p></div></li></ol>
+  </section>
+
+  <dl class="contact">
+    <div><dt>Mobil</dt><dd><a href="tel:+31631528525">+31 6 31 52 85 25</a> <span class="aside">auch WhatsApp</span></dd></div>
+    <div><dt>E-Mail</dt><dd><a href="mailto:info@delsum.nl">info@delsum.nl</a></dd></div>
+    <div><dt>Web</dt><dd><a href="https://aimflow.nl/de/" target="_blank" rel="noopener">aimflow.nl</a></dd></div>
+    <div><dt>Studio</dt><dd><a href="https://delsum.nl" target="_blank" rel="noopener">delsum.nl</a></dd></div>
+  </dl>
+
+  <footer><span>AIM Software · Delsum B.V.</span><span>Genemuiden, NL</span></footer>
+</main>
+</body>
+</html>
