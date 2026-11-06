@@ -1,0 +1,116 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 112 100" role="img" aria-label="AIM">
+
+  <defs>
+    <!-- Front faces: dark steel, a touch lighter towards the bottom right where the light grazes it. -->
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a5a62"/>
+      <stop offset="0.45" stop-color="#3a3a40"/>
+      <stop offset="1" stop-color="#202024"/>
+    </linearGradient>
+    <!-- Per-piece falloff: light from above, each piece darkens towards its own bottom. -->
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.35" stop-color="#000" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.65"/>
+    </linearGradient>
+    <!-- Brushed, lit chamfer walls: bright at the front edge, dark at the back. -->
+    <linearGradient id="wallLit" x1="0" y1="0" x2="1" y2="0.35">
+      <stop offset="0" stop-color="#a4a4ac"/>
+      <stop offset="0.4" stop-color="#5e5e66"/>
+      <stop offset="1" stop-color="#26262a"/>
+    </linearGradient>
+    <!-- Walls of the extrusion: near-black at the top, brushed and lighter low down. -->
+    <linearGradient id="wall" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+      <stop offset="0" stop-color="#0e0e10"/>
+      <stop offset="1" stop-color="#1b1b1f"/>
+    </linearGradient>
+    <linearGradient id="wallDown" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+      <stop offset="0" stop-color="#0a0a0b"/>
+      <stop offset="1" stop-color="#101012"/>
+    </linearGradient>
+    <!-- Sand-blasted steel: fine bright grains screened over the base, darker pits multiplied under it. -->
+    <filter id="grain" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="2.0" numOctaves="3" seed="11" result="t1"/>
+      <feColorMatrix in="t1" type="saturate" values="0" result="g1"/>
+      <feComponentTransfer in="g1" result="specks">
+        <feFuncR type="table" tableValues="0 0 0 0.05 0.35 0.8 1 1"/>
+        <feFuncG type="table" tableValues="0 0 0 0.05 0.35 0.8 1 1"/>
+        <feFuncB type="table" tableValues="0 0 0 0.05 0.36 0.82 1 1"/>
+        <feFuncA type="table" tableValues="1 1"/>
+      </feComponentTransfer>
+      <feComposite in="specks" in2="SourceAlpha" operator="in" result="specksIn"/>
+      <feBlend in="SourceGraphic" in2="specksIn" mode="screen" result="lit"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.12" numOctaves="2" seed="4" result="t2"/>
+      <feColorMatrix in="t2" type="saturate" values="0" result="g2"/>
+      <feComponentTransfer in="g2" result="pits">
+        <feFuncR type="table" tableValues="0.7 0.85 1 1 1"/>
+        <feFuncG type="table" tableValues="0.7 0.85 1 1 1"/>
+        <feFuncB type="table" tableValues="0.7 0.85 1 1 1"/>
+        <feFuncA type="table" tableValues="1 1"/>
+      </feComponentTransfer>
+      <feComposite in="pits" in2="SourceAlpha" operator="in" result="pitsIn"/>
+      <feBlend in="lit" in2="pitsIn" mode="multiply"/>
+    </filter>
+    <filter id="wallgrain" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08 1.4" numOctaves="2" seed="7" result="t"/>
+      <feColorMatrix in="t" type="saturate" values="0" result="g"/>
+      <feComponentTransfer in="g" result="s">
+        <feFuncR type="table" tableValues="0 0 0 0 0.06 0.2 0.4"/>
+        <feFuncG type="table" tableValues="0 0 0 0 0.06 0.2 0.4"/>
+        <feFuncB type="table" tableValues="0 0 0 0 0.06 0.2 0.4"/>
+        <feFuncA type="table" tableValues="1 1"/>
+      </feComponentTransfer>
+      <feComposite in="s" in2="SourceAlpha" operator="in" result="sIn"/>
+      <feBlend in="SourceGraphic" in2="sIn" mode="screen"/>
+    </filter>
+  </defs>
+
+<g filter="url(#wallgrain)">
+<polygon points="67,4 90.65,68 97.65,69 74,5" fill="url(#wall)"/>
+<polygon points="90.65,68 89.13,72 96.13,73 97.65,69" fill="url(#wallLit)"/>
+<polygon points="89.13,72 16.87,72 23.87,73 96.13,73" fill="url(#wallDown)"/>
+<polygon points="54.24,29 51.76,29 58.76,30 61.24,30" fill="url(#wallDown)"/>
+<polygon points="51.76,29 42.52,54 49.52,55 58.76,30" fill="url(#wall)"/>
+</g>
+<g filter="url(#grain)"><path d="M 39 4 L 67 4 L 90.65 68 L 89.13 72 L 16.87 72 L 15.35 68 Z M 42.52 54 L 63.48 54 L 54.24 29 L 51.76 29 Z" fill="url(#steel)" fill-rule="evenodd"/></g>
+<path d="M 39 4 L 67 4 L 90.65 68 L 89.13 72 L 16.87 72 L 15.35 68 Z M 42.52 54 L 63.48 54 L 54.24 29 L 51.76 29 Z" fill="url(#shade)" fill-rule="evenodd"/>
+<g stroke="#d4d4dc" stroke-width="0.55" stroke-linecap="round" fill="none">
+<line x1="39" y1="4" x2="67" y2="4" stroke-opacity="0.8"/>
+<line x1="67" y1="4" x2="90.65" y2="68" stroke-opacity="0.3"/>
+<line x1="90.65" y1="68" x2="89.13" y2="72" stroke-opacity="0.3"/>
+<line x1="89.13" y1="72" x2="16.87" y2="72" stroke-opacity="0.3"/>
+<line x1="16.87" y1="72" x2="15.35" y2="68" stroke-opacity="0.43"/>
+<line x1="15.35" y1="68" x2="39" y2="4" stroke-opacity="0.78"/>
+<line x1="42.52" y1="54" x2="63.48" y2="54" stroke-opacity="0.8"/>
+<line x1="63.48" y1="54" x2="54.24" y2="29" stroke-opacity="0.44"/>
+<line x1="54.24" y1="29" x2="51.76" y2="29" stroke-opacity="0.3"/>
+<line x1="51.76" y1="29" x2="42.52" y2="54" stroke-opacity="0.3"/>
+</g>
+<g filter="url(#wallgrain)">
+<polygon points="34.58,75.5 27,96 34,97 41.58,76.5" fill="url(#wallLit)"/>
+<polygon points="27,96 9,96 16,97 34,97" fill="url(#wallDown)"/>
+</g>
+<g filter="url(#grain)"><path d="M 12.58 75.5 L 34.58 75.5 L 27 96 L 9 96 L 6.48 92 Z" fill="url(#steel)" fill-rule="evenodd"/></g>
+<path d="M 12.58 75.5 L 34.58 75.5 L 27 96 L 9 96 L 6.48 92 Z" fill="url(#shade)" fill-rule="evenodd"/>
+<g stroke="#d4d4dc" stroke-width="0.55" stroke-linecap="round" fill="none">
+<line x1="12.58" y1="75.5" x2="34.58" y2="75.5" stroke-opacity="0.8"/>
+<line x1="34.58" y1="75.5" x2="27" y2="96" stroke-opacity="0.3"/>
+<line x1="27" y1="96" x2="9" y2="96" stroke-opacity="0.3"/>
+<line x1="9" y1="96" x2="6.48" y2="92" stroke-opacity="0.31"/>
+<line x1="6.48" y1="92" x2="12.58" y2="75.5" stroke-opacity="0.78"/>
+</g>
+<g filter="url(#wallgrain)">
+<polygon points="99.52,92 97,96 104,97 106.52,93" fill="url(#wallLit)"/>
+<polygon points="97,96 79,96 86,97 104,97" fill="url(#wallDown)"/>
+<polygon points="93.42,75.5 99.52,92 106.52,93 100.42,76.5" fill="url(#wall)"/>
+</g>
+<g filter="url(#grain)"><path d="M 99.52 92 L 97 96 L 79 96 L 71.42 75.5 L 93.42 75.5 Z" fill="url(#steel)" fill-rule="evenodd"/></g>
+<path d="M 99.52 92 L 97 96 L 79 96 L 71.42 75.5 L 93.42 75.5 Z" fill="url(#shade)" fill-rule="evenodd"/>
+<g stroke="#d4d4dc" stroke-width="0.55" stroke-linecap="round" fill="none">
+<line x1="99.52" y1="92" x2="97" y2="96" stroke-opacity="0.3"/>
+<line x1="97" y1="96" x2="79" y2="96" stroke-opacity="0.3"/>
+<line x1="79" y1="96" x2="71.42" y2="75.5" stroke-opacity="0.44"/>
+<line x1="71.42" y1="75.5" x2="93.42" y2="75.5" stroke-opacity="0.8"/>
+<line x1="93.42" y1="75.5" x2="99.52" y2="92" stroke-opacity="0.3"/>
+</g>
+</svg>

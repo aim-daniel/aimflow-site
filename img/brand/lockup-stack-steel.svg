@@ -1,0 +1,149 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 226.49 100" role="img" aria-label="AIM Software">
+
+  <defs>
+    <!-- Front faces: dark steel, a touch lighter towards the bottom right where the light grazes it. -->
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#5a5a62"/>
+      <stop offset="0.45" stop-color="#3a3a40"/>
+      <stop offset="1" stop-color="#202024"/>
+    </linearGradient>
+    <!-- Per-piece falloff: light from above, each piece darkens towards its own bottom. -->
+    <linearGradient id="shade" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#000" stop-opacity="0"/>
+      <stop offset="0.35" stop-color="#000" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#000" stop-opacity="0.65"/>
+    </linearGradient>
+    <!-- Brushed, lit chamfer walls: bright at the front edge, dark at the back. -->
+    <linearGradient id="wallLit" x1="0" y1="0" x2="1" y2="0.35">
+      <stop offset="0" stop-color="#a4a4ac"/>
+      <stop offset="0.4" stop-color="#5e5e66"/>
+      <stop offset="1" stop-color="#26262a"/>
+    </linearGradient>
+    <!-- Walls of the extrusion: near-black at the top, brushed and lighter low down. -->
+    <linearGradient id="wall" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+      <stop offset="0" stop-color="#0e0e10"/>
+      <stop offset="1" stop-color="#1b1b1f"/>
+    </linearGradient>
+    <linearGradient id="wallDown" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="0" y2="100">
+      <stop offset="0" stop-color="#0a0a0b"/>
+      <stop offset="1" stop-color="#101012"/>
+    </linearGradient>
+    <!-- Sand-blasted steel: fine bright grains screened over the base, darker pits multiplied under it. -->
+    <filter id="grain" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="2.0" numOctaves="3" seed="11" result="t1"/>
+      <feColorMatrix in="t1" type="saturate" values="0" result="g1"/>
+      <feComponentTransfer in="g1" result="specks">
+        <feFuncR type="table" tableValues="0 0 0 0.05 0.35 0.8 1 1"/>
+        <feFuncG type="table" tableValues="0 0 0 0.05 0.35 0.8 1 1"/>
+        <feFuncB type="table" tableValues="0 0 0 0.05 0.36 0.82 1 1"/>
+        <feFuncA type="table" tableValues="1 1"/>
+      </feComponentTransfer>
+      <feComposite in="specks" in2="SourceAlpha" operator="in" result="specksIn"/>
+      <feBlend in="SourceGraphic" in2="specksIn" mode="screen" result="lit"/>
+      <feTurbulence type="fractalNoise" baseFrequency="0.12" numOctaves="2" seed="4" result="t2"/>
+      <feColorMatrix in="t2" type="saturate" values="0" result="g2"/>
+      <feComponentTransfer in="g2" result="pits">
+        <feFuncR type="table" tableValues="0.7 0.85 1 1 1"/>
+        <feFuncG type="table" tableValues="0.7 0.85 1 1 1"/>
+        <feFuncB type="table" tableValues="0.7 0.85 1 1 1"/>
+        <feFuncA type="table" tableValues="1 1"/>
+      </feComponentTransfer>
+      <feComposite in="pits" in2="SourceAlpha" operator="in" result="pitsIn"/>
+      <feBlend in="lit" in2="pitsIn" mode="multiply"/>
+    </filter>
+    <filter id="wallgrain" x="-3%" y="-3%" width="106%" height="106%" color-interpolation-filters="sRGB">
+      <feTurbulence type="fractalNoise" baseFrequency="0.08 1.4" numOctaves="2" seed="7" result="t"/>
+      <feColorMatrix in="t" type="saturate" values="0" result="g"/>
+      <feComponentTransfer in="g" result="s">
+        <feFuncR type="table" tableValues="0 0 0 0 0.06 0.2 0.4"/>
+        <feFuncG type="table" tableValues="0 0 0 0 0.06 0.2 0.4"/>
+        <feFuncB type="table" tableValues="0 0 0 0 0.06 0.2 0.4"/>
+        <feFuncA type="table" tableValues="1 1"/>
+      </feComponentTransfer>
+      <feComposite in="s" in2="SourceAlpha" operator="in" result="sIn"/>
+      <feBlend in="SourceGraphic" in2="sIn" mode="screen"/>
+    </filter>
+  </defs>
+
+<g filter="url(#wallgrain)">
+<polygon points="67,4 90.65,68 97.65,69 74,5" fill="url(#wall)"/>
+<polygon points="90.65,68 89.13,72 96.13,73 97.65,69" fill="url(#wallLit)"/>
+<polygon points="89.13,72 16.87,72 23.87,73 96.13,73" fill="url(#wallDown)"/>
+<polygon points="54.24,29 51.76,29 58.76,30 61.24,30" fill="url(#wallDown)"/>
+<polygon points="51.76,29 42.52,54 49.52,55 58.76,30" fill="url(#wall)"/>
+</g>
+<g filter="url(#grain)"><path d="M 39 4 L 67 4 L 90.65 68 L 89.13 72 L 16.87 72 L 15.35 68 Z M 42.52 54 L 63.48 54 L 54.24 29 L 51.76 29 Z" fill="url(#steel)" fill-rule="evenodd"/></g>
+<path d="M 39 4 L 67 4 L 90.65 68 L 89.13 72 L 16.87 72 L 15.35 68 Z M 42.52 54 L 63.48 54 L 54.24 29 L 51.76 29 Z" fill="url(#shade)" fill-rule="evenodd"/>
+<g stroke="#d4d4dc" stroke-width="0.55" stroke-linecap="round" fill="none">
+<line x1="39" y1="4" x2="67" y2="4" stroke-opacity="0.8"/>
+<line x1="67" y1="4" x2="90.65" y2="68" stroke-opacity="0.3"/>
+<line x1="90.65" y1="68" x2="89.13" y2="72" stroke-opacity="0.3"/>
+<line x1="89.13" y1="72" x2="16.87" y2="72" stroke-opacity="0.3"/>
+<line x1="16.87" y1="72" x2="15.35" y2="68" stroke-opacity="0.43"/>
+<line x1="15.35" y1="68" x2="39" y2="4" stroke-opacity="0.78"/>
+<line x1="42.52" y1="54" x2="63.48" y2="54" stroke-opacity="0.8"/>
+<line x1="63.48" y1="54" x2="54.24" y2="29" stroke-opacity="0.44"/>
+<line x1="54.24" y1="29" x2="51.76" y2="29" stroke-opacity="0.3"/>
+<line x1="51.76" y1="29" x2="42.52" y2="54" stroke-opacity="0.3"/>
+</g>
+<g filter="url(#wallgrain)">
+<polygon points="34.58,75.5 27,96 34,97 41.58,76.5" fill="url(#wallLit)"/>
+<polygon points="27,96 9,96 16,97 34,97" fill="url(#wallDown)"/>
+</g>
+<g filter="url(#grain)"><path d="M 12.58 75.5 L 34.58 75.5 L 27 96 L 9 96 L 6.48 92 Z" fill="url(#steel)" fill-rule="evenodd"/></g>
+<path d="M 12.58 75.5 L 34.58 75.5 L 27 96 L 9 96 L 6.48 92 Z" fill="url(#shade)" fill-rule="evenodd"/>
+<g stroke="#d4d4dc" stroke-width="0.55" stroke-linecap="round" fill="none">
+<line x1="12.58" y1="75.5" x2="34.58" y2="75.5" stroke-opacity="0.8"/>
+<line x1="34.58" y1="75.5" x2="27" y2="96" stroke-opacity="0.3"/>
+<line x1="27" y1="96" x2="9" y2="96" stroke-opacity="0.3"/>
+<line x1="9" y1="96" x2="6.48" y2="92" stroke-opacity="0.31"/>
+<line x1="6.48" y1="92" x2="12.58" y2="75.5" stroke-opacity="0.78"/>
+</g>
+<g filter="url(#wallgrain)">
+<polygon points="99.52,92 97,96 104,97 106.52,93" fill="url(#wallLit)"/>
+<polygon points="97,96 79,96 86,97 104,97" fill="url(#wallDown)"/>
+<polygon points="93.42,75.5 99.52,92 106.52,93 100.42,76.5" fill="url(#wall)"/>
+</g>
+<g filter="url(#grain)"><path d="M 99.52 92 L 97 96 L 79 96 L 71.42 75.5 L 93.42 75.5 Z" fill="url(#steel)" fill-rule="evenodd"/></g>
+<path d="M 99.52 92 L 97 96 L 79 96 L 71.42 75.5 L 93.42 75.5 Z" fill="url(#shade)" fill-rule="evenodd"/>
+<g stroke="#d4d4dc" stroke-width="0.55" stroke-linecap="round" fill="none">
+<line x1="99.52" y1="92" x2="97" y2="96" stroke-opacity="0.3"/>
+<line x1="97" y1="96" x2="79" y2="96" stroke-opacity="0.3"/>
+<line x1="79" y1="96" x2="71.42" y2="75.5" stroke-opacity="0.44"/>
+<line x1="71.42" y1="75.5" x2="93.42" y2="75.5" stroke-opacity="0.8"/>
+<line x1="93.42" y1="75.5" x2="99.52" y2="92" stroke-opacity="0.3"/>
+</g>
+<svg x="130" y="22.77" width="96.49" height="54.45" viewBox="0 0 96.49 54.45"><g filter="url(#grain)" fill="url(#steel)">
+<g transform="translate(0, 39.2)">
+<path d="M14.616 -39.2H21.56L35.896 0.0H28.168L24.976 -8.68H11.200000000000001L8.008000000000001 0.0H0.28ZM23.296 -14.952 18.088 -29.848H17.976L12.936 -14.952Z"/>
+<path d="M40.096000000000004 -39.2H47.712V0.0H40.096000000000004Z"/>
+<path d="M55.272000000000006 -39.2H62.328L73.976 -13.888H74.08800000000001L85.792 -39.2H92.84800000000001V0.0H85.512V-23.856H85.4L76.384 -5.488H71.68L62.720000000000006 -23.856H62.608000000000004V0.0H55.272000000000006Z"/>
+</g>
+<g transform="translate(0, 54.45)">
+<path d="M0.75 -1.2125000000000001V-2.1625H1.9375V-1.6L2.475 -1.05H5.3375L5.8875 -1.6125V-3.4125L5.3375 -3.95H1.9875L0.775 -5.175000000000001V-7.5375000000000005L1.9875 -8.75H5.7625L6.9750000000000005 -7.5375000000000005V-6.575H5.800000000000001V-7.15L5.25 -7.7H2.5125L1.9625000000000001 -7.15V-5.550000000000001L2.5125 -5.0H5.862500000000001L7.075 -3.7875V-1.2375L5.8375 0.0H1.9625000000000001Z"/>
+<path d="M13.110785714285715 -1.4000000000000001V-7.3500000000000005L14.510785714285715 -8.75H18.635785714285717L20.035785714285716 -7.3500000000000005V-1.4000000000000001L18.635785714285717 0.0H14.510785714285715ZM18.060785714285714 -1.05 18.835785714285716 -1.8250000000000002V-6.925000000000001L18.060785714285714 -7.7H15.085785714285715L14.310785714285714 -6.925000000000001V-1.8250000000000002L15.085785714285715 -1.05Z"/>
+<path d="M26.32157142857143 -8.75H32.07157142857143V-7.7H27.52157142857143V-4.800000000000001H31.47157142857143V-3.75H27.52157142857143V0.0H26.32157142857143Z"/>
+<path d="M39.86985714285715 -7.7125H37.23235714285715V-8.75H43.70735714285715V-7.7125H41.069857142857146V0.0H39.86985714285715Z"/>
+<path d="M48.993142857142864 -8.75H50.20564285714286L51.493142857142864 -1.7625000000000002H51.530642857142865L53.50564285714287 -8.75H54.54314285714287L56.468142857142865 -1.7625000000000002H56.493142857142864L57.75564285714287 -8.75H58.968142857142865L57.19314285714287 0.0H55.98064285714287L54.04314285714287 -6.987500000000001H54.00564285714287L51.98064285714286 0.0H50.76814285714286Z"/>
+<path d="M67.26642857142858 -8.75H68.46642857142858L71.61642857142859 0.0H70.37892857142859L69.60392857142858 -2.225H66.14142857142858L65.36642857142859 0.0H64.12892857142859ZM69.29142857142858 -3.2375000000000003 67.87892857142859 -7.325H67.85392857142858L66.46642857142858 -3.2375000000000003Z"/>
+<path d="M83.70221428571429 -2.75V0.0H82.50221428571429V-2.45L81.4647142857143 -3.5625H78.4772142857143V0.0H77.2772142857143V-8.75H82.43971428571429L83.6522142857143 -7.5375000000000005V-4.8125L82.68971428571429 -3.85ZM78.4772142857143 -4.5875H81.9022142857143L82.4647142857143 -5.1375V-7.175000000000001L81.9022142857143 -7.7250000000000005H78.4772142857143Z"/>
+<path d="M90.05050000000001 -8.75H95.92550000000001V-7.7H91.25050000000002V-4.9125000000000005H95.56300000000002V-3.875H91.25050000000002V-1.05H95.92550000000001V0.0H90.05050000000001Z"/>
+</g>
+</g><g fill="url(#shade)">
+<g transform="translate(0, 39.2)">
+<path d="M14.616 -39.2H21.56L35.896 0.0H28.168L24.976 -8.68H11.200000000000001L8.008000000000001 0.0H0.28ZM23.296 -14.952 18.088 -29.848H17.976L12.936 -14.952Z"/>
+<path d="M40.096000000000004 -39.2H47.712V0.0H40.096000000000004Z"/>
+<path d="M55.272000000000006 -39.2H62.328L73.976 -13.888H74.08800000000001L85.792 -39.2H92.84800000000001V0.0H85.512V-23.856H85.4L76.384 -5.488H71.68L62.720000000000006 -23.856H62.608000000000004V0.0H55.272000000000006Z"/>
+</g>
+<g transform="translate(0, 54.45)">
+<path d="M0.75 -1.2125000000000001V-2.1625H1.9375V-1.6L2.475 -1.05H5.3375L5.8875 -1.6125V-3.4125L5.3375 -3.95H1.9875L0.775 -5.175000000000001V-7.5375000000000005L1.9875 -8.75H5.7625L6.9750000000000005 -7.5375000000000005V-6.575H5.800000000000001V-7.15L5.25 -7.7H2.5125L1.9625000000000001 -7.15V-5.550000000000001L2.5125 -5.0H5.862500000000001L7.075 -3.7875V-1.2375L5.8375 0.0H1.9625000000000001Z"/>
+<path d="M13.110785714285715 -1.4000000000000001V-7.3500000000000005L14.510785714285715 -8.75H18.635785714285717L20.035785714285716 -7.3500000000000005V-1.4000000000000001L18.635785714285717 0.0H14.510785714285715ZM18.060785714285714 -1.05 18.835785714285716 -1.8250000000000002V-6.925000000000001L18.060785714285714 -7.7H15.085785714285715L14.310785714285714 -6.925000000000001V-1.8250000000000002L15.085785714285715 -1.05Z"/>
+<path d="M26.32157142857143 -8.75H32.07157142857143V-7.7H27.52157142857143V-4.800000000000001H31.47157142857143V-3.75H27.52157142857143V0.0H26.32157142857143Z"/>
+<path d="M39.86985714285715 -7.7125H37.23235714285715V-8.75H43.70735714285715V-7.7125H41.069857142857146V0.0H39.86985714285715Z"/>
+<path d="M48.993142857142864 -8.75H50.20564285714286L51.493142857142864 -1.7625000000000002H51.530642857142865L53.50564285714287 -8.75H54.54314285714287L56.468142857142865 -1.7625000000000002H56.493142857142864L57.75564285714287 -8.75H58.968142857142865L57.19314285714287 0.0H55.98064285714287L54.04314285714287 -6.987500000000001H54.00564285714287L51.98064285714286 0.0H50.76814285714286Z"/>
+<path d="M67.26642857142858 -8.75H68.46642857142858L71.61642857142859 0.0H70.37892857142859L69.60392857142858 -2.225H66.14142857142858L65.36642857142859 0.0H64.12892857142859ZM69.29142857142858 -3.2375000000000003 67.87892857142859 -7.325H67.85392857142858L66.46642857142858 -3.2375000000000003Z"/>
+<path d="M83.70221428571429 -2.75V0.0H82.50221428571429V-2.45L81.4647142857143 -3.5625H78.4772142857143V0.0H77.2772142857143V-8.75H82.43971428571429L83.6522142857143 -7.5375000000000005V-4.8125L82.68971428571429 -3.85ZM78.4772142857143 -4.5875H81.9022142857143L82.4647142857143 -5.1375V-7.175000000000001L81.9022142857143 -7.7250000000000005H78.4772142857143Z"/>
+<path d="M90.05050000000001 -8.75H95.92550000000001V-7.7H91.25050000000002V-4.9125000000000005H95.56300000000002V-3.875H91.25050000000002V-1.05H95.92550000000001V0.0H90.05050000000001Z"/>
+</g>
+</g></svg>
+</svg>
