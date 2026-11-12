@@ -1,0 +1,59 @@
+/* ZWART-WIT – alleen kleur; opbouw, tekst en typografie zijn de live site */
+:root{--warm:none;--hv-warm:transparent;--hv-warm-2:transparent;--hv-warm-ice:transparent;--titanium:#B9B9BC}
+/* ---- ZWART (ref 4): zwart-grijs verloop ---- */
+:root{
+  --bg:#0E0E0F; --bg-2:#161618; --line:#232325; --line-2:#303033;
+  --ink:#EDEDEE; --ink-2:#BDBDC1; --mist:#86868C; --accent:#E6E6E8; --accent-ink:#0E0E0F;
+  --obsidian:#0E0E0F; --deep:#1C1C1E; --ice:#D9D9DC; --merk:#E6E6E8;
+  --btn:#EDEDEE; --btn-ink:#0E0E0F; --btn-h:#FFFFFF; --ok:#E6E6E8;
+  --hd-bg:rgba(14,14,15,.72);
+  --plate-held:radial-gradient(70% 55% at 50% 0%,#2E2E31 0,rgba(46,46,49,0) 72%),linear-gradient(180deg,#1B1B1D 0%,#121213 55%,#0B0B0C 100%);
+  --plate:var(--plate-held);
+  --hv-uit:linear-gradient(transparent,transparent);
+}
+/* ---- WIT (ref 1–3): bijna wit, één zacht lichtveld, een vleugje koel grijs onderin ---- */
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]){
+  --bg:#F3F3F4; --bg-2:#FAFAFA; --line:#E2E2E4; --line-2:#CDCDD1;
+  --ink:#121214; --ink-2:#3C3C41; --mist:#6E6E75; --accent:#121214; --accent-ink:#FFFFFF;
+  --merk:#121214; --btn:#121214; --btn-ink:#FFFFFF; --btn-h:#2C2C30; --ok:#121214;
+  --hd-bg:rgba(246,246,247,.8); --veld:linear-gradient(180deg,#FFFFFF 0,#F6F6F7 600px,#F3F3F4 1000px);
+  --band:linear-gradient(180deg,#F7F7F8,#EEEEF0); --band-ink:#3C3C41;
+  --raster:rgba(18,18,20,.035); --rail:rgba(18,18,20,.1); --rule:rgba(18,18,20,.1); --cross:rgba(18,18,20,.4);
+  --sx:rgba(18,18,20,.18); --sx-t:rgba(18,18,20,.5); --sx-d:rgba(18,18,20,.7);
+  --edge:rgba(255,255,255,.85);
+  --panel:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3));
+  --panel-sh:inset 0 1px 0 rgba(255,255,255,.95),0 1px 2px rgba(18,18,20,.05),0 30px 60px -44px rgba(18,18,20,.3);
+  --plate-held:radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),radial-gradient(60% 35% at 60% 105%,rgba(160,168,182,.28),transparent 72%),linear-gradient(180deg,#F7F7F8,#ECECEE);
+  --plate:var(--plate-held);
+  --hv-ink:#121214; --hv-ink-2:#3C3C41; --hv-ink-3:#55555B; --hv-dim:#7A7A80; --hv-label:#6E6E75; --hv-sq:#121214; --hv-lead:#55555B;
+  --hv-veil:rgba(247,247,248,.55); --hv-veil-2:rgba(247,247,248,.4); --hv-veil-3:rgba(247,247,248,.15);
+  --hv-btn:#121214; --hv-btn-ink:#FFFFFF; --hv-btn-h:#2C2C30; --hv-btn-ring:rgba(18,18,20,.3); --hv-btn-glow:transparent;
+  --hv-btn-line:rgba(18,18,20,.22); --hv-btn-line-h:rgba(18,18,20,.55);
+  --hv-box:rgba(255,255,255,.5); --hv-box-t:rgba(18,18,20,.2); --hv-box-b:rgba(255,255,255,.75); --hv-box-bt:rgba(18,18,20,.22);
+  --hv-lijn:18,18,20; --hv-haar:rgba(18,18,20,.07);
+  --on:#121214; --on-2:rgba(18,18,20,.75); --on-3:rgba(18,18,20,.55);
+  --tq-dim:#6E6E75; --tk-w1:#EDEDEF; --tk-w2:#C9C9CD;
+  color-scheme:light}}
+
+:root[data-theme="light"]{
+  --bg:#F3F3F4; --bg-2:#FAFAFA; --line:#E2E2E4; --line-2:#CDCDD1;
+  --ink:#121214; --ink-2:#3C3C41; --mist:#6E6E75; --accent:#121214; --accent-ink:#FFFFFF;
+  --merk:#121214; --btn:#121214; --btn-ink:#FFFFFF; --btn-h:#2C2C30; --ok:#121214;
+  --hd-bg:rgba(246,246,247,.8); --veld:linear-gradient(180deg,#FFFFFF 0,#F6F6F7 600px,#F3F3F4 1000px);
+  --band:linear-gradient(180deg,#F7F7F8,#EEEEF0); --band-ink:#3C3C41;
+  --raster:rgba(18,18,20,.035); --rail:rgba(18,18,20,.1); --rule:rgba(18,18,20,.1); --cross:rgba(18,18,20,.4);
+  --sx:rgba(18,18,20,.18); --sx-t:rgba(18,18,20,.5); --sx-d:rgba(18,18,20,.7);
+  --edge:rgba(255,255,255,.85);
+  --panel:linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3));
+  --panel-sh:inset 0 1px 0 rgba(255,255,255,.95),0 1px 2px rgba(18,18,20,.05),0 30px 60px -44px rgba(18,18,20,.3);
+  --plate-held:radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),radial-gradient(60% 35% at 60% 105%,rgba(160,168,182,.28),transparent 72%),linear-gradient(180deg,#F7F7F8,#ECECEE);
+  --plate:var(--plate-held);
+  --hv-ink:#121214; --hv-ink-2:#3C3C41; --hv-ink-3:#55555B; --hv-dim:#7A7A80; --hv-label:#6E6E75; --hv-sq:#121214; --hv-lead:#55555B;
+  --hv-veil:rgba(247,247,248,.55); --hv-veil-2:rgba(247,247,248,.4); --hv-veil-3:rgba(247,247,248,.15);
+  --hv-btn:#121214; --hv-btn-ink:#FFFFFF; --hv-btn-h:#2C2C30; --hv-btn-ring:rgba(18,18,20,.3); --hv-btn-glow:transparent;
+  --hv-btn-line:rgba(18,18,20,.22); --hv-btn-line-h:rgba(18,18,20,.55);
+  --hv-box:rgba(255,255,255,.5); --hv-box-t:rgba(18,18,20,.2); --hv-box-b:rgba(255,255,255,.75); --hv-box-bt:rgba(18,18,20,.22);
+  --hv-lijn:18,18,20; --hv-haar:rgba(18,18,20,.07);
+  --on:#121214; --on-2:rgba(18,18,20,.75); --on-3:rgba(18,18,20,.55);
+  --tq-dim:#6E6E75; --tk-w1:#EDEDEF; --tk-w2:#C9C9CD;
+  color-scheme:light}

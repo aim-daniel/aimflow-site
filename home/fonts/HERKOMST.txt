@@ -1,0 +1,4 @@
+Plus Jakarta Sans (variabel, gewicht 400–800), versie v12 van Google Fonts, gedownload op 01-11-2026
+(met akkoord van Daniel) van fonts.gstatic.com: de subsets latin en latin-ext.
+Licentie: SIL Open Font License 1.1. Copyright 2020 The Plus Jakarta Sans Project Authors
+(https://github.com/tokotype/PlusJakartaSans). Zelf gehost, zodat de site niets van Google laadt (AVG).

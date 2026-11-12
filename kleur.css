@@ -1,0 +1,750 @@
+/* KLEUR – één accent op de kleine markeringen (kick-bolletjes, opsommingstekens, actieve keuzes, maatlijnen) */
+html[data-kleur]{--accent:var(--k);--hv-sq:var(--k);--ok:var(--k);--hv-btn-glow:var(--k-glow);--cross:var(--k-cross)}
+/* zwart thema: de heldere tint */
+html[data-kleur="oranje"]{--k:#F2592A;--k-glow:rgba(242,89,42,.35);--k-cross:rgba(242,89,42,.6)}
+html[data-kleur="geel"]{--k:#F5C518;--k-glow:rgba(245,197,24,.35);--k-cross:rgba(245,197,24,.6)}
+html[data-kleur="groen"]{--k:#22C38A;--k-glow:rgba(34,195,138,.35);--k-cross:rgba(34,195,138,.6)}
+html[data-kleur="staal"]{--k:#7D96B2;--k-glow:rgba(98,123,150,.4);--k-cross:rgba(125,150,178,.65)}
+html[data-kleur="salie"]{--k:#86A99C;--k-glow:rgba(134,169,156,.4);--k-cross:rgba(134,169,156,.65)}
+html[data-kleur="hemel"]{--k:#5AA2DE;--k-glow:rgba(90,162,222,.4);--k-cross:rgba(90,162,222,.65)}
+html[data-kleur="rood"]{--k:#E8412F;--k-glow:rgba(232,65,47,.35);--k-cross:rgba(232,65,47,.6)}
+/* wit thema: dezelfde kleur, iets dieper zodat hij op wit leesbaar blijft */
+@media (prefers-color-scheme:light){
+  html:not([data-theme="dark"])[data-kleur="oranje"]{--k:#E2491B}
+  html:not([data-theme="dark"])[data-kleur="geel"]{--k:#D9A400}
+  html:not([data-theme="dark"])[data-kleur="groen"]{--k:#0FA372}
+  html:not([data-theme="dark"])[data-kleur="rood"]{--k:#D6301F}
+  html:not([data-theme="dark"])[data-kleur="staal"]{--k:#627B96}
+  html:not([data-theme="dark"])[data-kleur="salie"]{--k:#5F8174}
+  html:not([data-theme="dark"])[data-kleur="hemel"]{--k:#2F7BC2}}
+html[data-theme="light"][data-kleur="oranje"]{--k:#E2491B}
+html[data-theme="light"][data-kleur="geel"]{--k:#D9A400}
+html[data-theme="light"][data-kleur="groen"]{--k:#0FA372}
+html[data-theme="light"][data-kleur="rood"]{--k:#D6301F}
+html[data-theme="light"][data-kleur="staal"]{--k:#627B96}
+html[data-theme="light"][data-kleur="salie"]{--k:#5F8174}
+html[data-theme="light"][data-kleur="hemel"]{--k:#2F7BC2}
+/* knop blijft zwart/wit; accent ook op de onderdeelnummers in de configurator en het actieve menu-item */
+html[data-kleur] .cfg__legend b,html[data-kleur] .app__sum li b{color:var(--k)}
+html[data-kleur] .btn--primary{box-shadow:inset 0 -2px 0 var(--k)}
+/* kiezer (alleen voor deze preview) */
+.kk{position:fixed;left:max(14px,env(safe-area-inset-left,0px));bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:10001;display:flex;gap:6px;align-items:center;
+  padding:7px 9px;border-radius:999px;background:var(--bg-2);border:1px solid var(--line-2);box-shadow:0 10px 30px -12px rgba(0,0,0,.4);font:500 10px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--mist)}
+.kk button{all:unset;cursor:pointer;display:flex;align-items:center;gap:6px;padding:5px 8px;border-radius:999px;color:var(--ink-2)}
+.kk button i{width:10px;height:10px;border-radius:50%;display:block;border:1px solid var(--line-2)}
+.kk button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.kk button:focus-visible{outline:2px solid var(--ink)}
+html[data-kleur] .label::before,html[data-kleur] .status::before,html[data-kleur] .kick::before,html[data-kleur] .list li::before{background:var(--k)!important}
+html[data-kleur] .cfg__legend b,html[data-kleur] .app__sum li b,html[data-kleur] .status{color:var(--k)}
+html[data-kleur] .app__item.is-on,html[data-kleur] .tab[aria-selected="true"]{box-shadow:inset 2px 0 0 var(--k)}
+
+/* ---- WAAS: de kleur zacht in de achtergronden (opening, pagina, panelen, laadscherm) ---- */
+html[data-kleur="oranje"]{--kr:242,89,42}
+html[data-kleur="geel"]{--kr:245,190,24}
+html[data-kleur="groen"]{--kr:34,195,138}
+html[data-kleur="rood"]{--kr:232,65,47}
+html[data-kleur="staal"]{--kr:98,123,150}
+html[data-kleur="salie"]{--kr:122,160,146}
+html[data-kleur="hemel"]{--kr:90,162,222}
+/* zwart */
+html:root[data-kleur]{
+  --plate-held:
+    radial-gradient(46% 38% at 84% 96%,rgba(var(--kr),.22),transparent 72%),
+    radial-gradient(34% 28% at 8% 104%,rgba(var(--kr),.10),transparent 70%),
+    radial-gradient(70% 55% at 50% 0%,#2E2E31 0,rgba(46,46,49,0) 72%),
+    linear-gradient(180deg,#1B1B1D 0%,#121213 55%,#0B0B0C 100%);
+  --plate:var(--plate-held);
+  --panel:radial-gradient(120% 90% at 0% 0%,rgba(var(--kr),0.119),transparent 55%),linear-gradient(180deg,rgba(40,40,43,.34),rgba(28,28,30,.06) 60%,rgba(28,28,30,0));
+}
+/* wit: zelfde plekken, iets zachter en lichter */
+@media (prefers-color-scheme:light){html:root:not([data-theme="dark"])[data-kleur]{
+  --plate-held:
+    radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+    radial-gradient(44% 34% at 84% 104%,rgba(var(--kr),.20),transparent 72%),
+    radial-gradient(32% 26% at 6% 108%,rgba(var(--kr),.08),transparent 70%),
+    linear-gradient(180deg,#F7F7F8,#ECECEE);
+  --plate:var(--plate-held);
+  --panel:radial-gradient(120% 90% at 0% 0%,rgba(var(--kr),0.119),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3));
+}}
+html:root[data-theme="light"][data-kleur]{
+  --plate-held:
+    radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+    radial-gradient(44% 34% at 84% 104%,rgba(var(--kr),.20),transparent 72%),
+    radial-gradient(32% 26% at 6% 108%,rgba(var(--kr),.08),transparent 70%),
+    linear-gradient(180deg,#F7F7F8,#ECECEE);
+  --plate:var(--plate-held);
+  --panel:radial-gradient(120% 90% at 0% 0%,rgba(var(--kr),0.119),transparent 55%),linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3));
+}
+/* gloed van de hoofdknop in de opening in de kleur */
+html[data-kleur]{--hv-warm:rgba(var(--kr),.30);--hv-warm-2:rgba(var(--kr),.12);--hv-warm-ice:transparent}
+
+/* vaste zachte gloed in twee hoeken van het scherm, loopt mee met scrollen */
+html[data-kleur]::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:9997;
+  background:radial-gradient(42vw 34vw at 100% 100%,rgba(var(--kr),.16),transparent 70%),radial-gradient(30vw 24vw at 0% 18%,rgba(var(--kr),.07),transparent 70%);
+  mix-blend-mode:screen}
+@media (prefers-color-scheme:light){html:not([data-theme="dark"])[data-kleur]::before{mix-blend-mode:multiply;
+  background:radial-gradient(42vw 34vw at 100% 100%,rgba(var(--kr),.13),transparent 70%),radial-gradient(30vw 24vw at 0% 18%,rgba(var(--kr),.05),transparent 70%)}}
+html[data-theme="light"][data-kleur]::before{mix-blend-mode:multiply;
+  background:radial-gradient(42vw 34vw at 100% 100%,rgba(var(--kr),.13),transparent 70%),radial-gradient(30vw 24vw at 0% 18%,rgba(var(--kr),.05),transparent 70%)}
+
+/* ---- STRAK: kleur op het logo, de kaders en de lijnen ---- */
+/* logo blijft zwart/wit: geen kleur in het teken */
+/* lijnen van AIM CORE / AIM FLOW naar het 3D-teken in de kleur */
+html[data-kleur]{--hv-lijn:var(--kr);--hv-lijn-a:.75}
+html[data-kleur] .sdot{background:var(--k)!important;box-shadow:0 0 0 3px rgba(var(--kr),.18),0 0 12px rgba(var(--kr),.55)}
+/* kaders: hoekje in de kleur, rand verder neutraal */
+html[data-kleur] .section-box::before{content:"";position:absolute;left:-1px;top:-1px;width:14px;height:14px;border-left:1px solid var(--k);border-top:1px solid var(--k);pointer-events:none}
+html[data-kleur] .section-box::after{content:"";position:absolute;right:-1px;bottom:-1px;width:14px;height:14px;border-right:1px solid var(--k);border-bottom:1px solid var(--k);pointer-events:none}
+/* panelen en kaarten: hoekjes bij hover, zachte rand */
+html[data-kleur] .plan,html[data-kleur] .ent,html[data-kleur] .tk{transition:box-shadow .35s var(--ease)}
+html[data-kleur] .plan:hover,html[data-kleur] .ent:hover,html[data-kleur] .tk:hover{box-shadow:var(--panel-sh),inset 0 0 0 1px rgba(var(--kr),.45)}
+/* knoppen: tweede knop krijgt bij hover een kleurrand */
+html[data-kleur] .btn:not(.btn--primary):hover{border-color:var(--k)!important;color:var(--ink)}
+/* laadscherm: zachte gloed in de kleur achter het teken */
+html[data-kleur] .splash__gloed{background:radial-gradient(closest-side,rgba(var(--kr),.28),transparent 75%)!important}
+/* scan-lijntje dat langs de bovenkant van het actieve configuratorvenster loopt */
+@media (prefers-reduced-motion:no-preference){
+  html[data-kleur] .win.cfg{position:relative}
+  html[data-kleur] .win.cfg::after{content:"";position:absolute;left:0;top:0;height:1px;width:22%;background:linear-gradient(90deg,transparent,var(--k),transparent);animation:aim-scan 5.5s cubic-bezier(.4,0,.2,1) infinite;pointer-events:none;z-index:5}
+  @keyframes aim-scan{0%{transform:translateX(-30%)}100%{transform:translateX(480%)}}
+}
+
+/* ---- DUO: salie + hemelblauw samen (zwart en wit) ----
+   salie   = markeringen: bolletjes, statussen, onderdeelnummers, iconen
+   hemel   = lijnen: verbindingslijnen + stippen, hoekjes, scanlijn, hover-randen
+   wazen   = salie rechts, hemelblauw links */
+html[data-kleur="duo"]{--k:#86A99C;--kr:122,160,146;--k2:#5AA2DE;--kr2:90,162,222;--k-glow:rgba(90,162,222,.35);--k-cross:rgba(90,162,222,.6)}
+@media (prefers-color-scheme:light){html:not([data-theme="dark"])[data-kleur="duo"]{--k:#5F8174;--k2:#2F7BC2}}
+html[data-theme="light"][data-kleur="duo"]{--k:#5F8174;--k2:#2F7BC2}
+html[data-kleur="duo"]{--hv-lijn:var(--kr2)}
+html[data-kleur="duo"] .sdot{background:var(--k2)!important;box-shadow:0 0 0 3px rgba(var(--kr2),.18),0 0 12px rgba(var(--kr2),.55)}
+html[data-kleur="duo"] .section-box::before,html[data-kleur="duo"] .section-box::after{border-color:var(--k2)}
+html[data-kleur="duo"] .win.cfg::after{background:linear-gradient(90deg,transparent,var(--k2),transparent)}
+html[data-kleur="duo"] .btn:not(.btn--primary):hover{border-color:var(--k2)!important}
+html[data-kleur="duo"] .plan:hover,html[data-kleur="duo"] .ent:hover,html[data-kleur="duo"] .tk:hover{box-shadow:var(--panel-sh),inset 0 0 0 1px rgba(var(--kr2),.45)}
+html[data-kleur="duo"] .btn--primary{box-shadow:inset 0 -2px 0 var(--k2)}
+html:root[data-kleur="duo"]{
+  --plate-held:
+    radial-gradient(46% 38% at 84% 96%,rgba(var(--kr),.24),transparent 72%),
+    radial-gradient(40% 32% at 6% 100%,rgba(var(--kr2),.18),transparent 70%),
+    radial-gradient(70% 55% at 50% 0%,#2E2E31 0,rgba(46,46,49,0) 72%),
+    linear-gradient(180deg,#1B1B1D 0%,#121213 55%,#0B0B0C 100%);
+  --panel:radial-gradient(120% 90% at 0% 0%,rgba(var(--kr2),.10),transparent 55%),radial-gradient(90% 70% at 100% 100%,rgba(var(--kr),.08),transparent 60%),linear-gradient(180deg,rgba(40,40,43,.34),rgba(28,28,30,.06) 60%,rgba(28,28,30,0));
+}
+@media (prefers-color-scheme:light){html:root:not([data-theme="dark"])[data-kleur="duo"]{
+  --plate-held:
+    radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+    radial-gradient(44% 34% at 84% 104%,rgba(var(--kr),.22),transparent 72%),
+    radial-gradient(38% 30% at 6% 106%,rgba(var(--kr2),.16),transparent 70%),
+    linear-gradient(180deg,#F7F7F8,#ECECEE);
+  --panel:radial-gradient(120% 90% at 0% 0%,rgba(var(--kr2),.09),transparent 55%),radial-gradient(90% 70% at 100% 100%,rgba(var(--kr),.08),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3));}}
+html:root[data-theme="light"][data-kleur="duo"]{
+  --plate-held:
+    radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+    radial-gradient(44% 34% at 84% 104%,rgba(var(--kr),.22),transparent 72%),
+    radial-gradient(38% 30% at 6% 106%,rgba(var(--kr2),.16),transparent 70%),
+    linear-gradient(180deg,#F7F7F8,#ECECEE);
+  --panel:radial-gradient(120% 90% at 0% 0%,rgba(var(--kr2),.09),transparent 55%),radial-gradient(90% 70% at 100% 100%,rgba(var(--kr),.08),transparent 60%),linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3));}
+html[data-kleur="duo"]::before{background:radial-gradient(42vw 34vw at 100% 100%,rgba(var(--kr),.17),transparent 70%),radial-gradient(34vw 28vw at 0% 20%,rgba(var(--kr2),.11),transparent 70%)!important}
+@media (prefers-color-scheme:light){html:not([data-theme="dark"])[data-kleur="duo"]::before{background:radial-gradient(42vw 34vw at 100% 100%,rgba(var(--kr),.14),transparent 70%),radial-gradient(34vw 28vw at 0% 20%,rgba(var(--kr2),.08),transparent 70%)!important}}
+html[data-theme="light"][data-kleur="duo"]::before{background:radial-gradient(42vw 34vw at 100% 100%,rgba(var(--kr),.14),transparent 70%),radial-gradient(34vw 28vw at 0% 20%,rgba(var(--kr2),.08),transparent 70%)!important}
+
+/* ==== SCROLL-KLEUR: home = hemelblauw, CORE-delen = salie, FLOW = hemelblauw; vloeiende overgang ==== */
+@property --kr-r{syntax:'<number>';inherits:true;initial-value:90}
+@property --kr-g{syntax:'<number>';inherits:true;initial-value:162}
+@property --kr-b{syntax:'<number>';inherits:true;initial-value:222}
+@property --kk-r{syntax:'<number>';inherits:true;initial-value:90}
+@property --kk-g{syntax:'<number>';inherits:true;initial-value:162}
+@property --kk-b{syntax:'<number>';inherits:true;initial-value:222}
+html:root[data-kleur="hemel"],html:root[data-kleur="salie"]{
+  --kr:var(--kr-r),var(--kr-g),var(--kr-b);
+  --k:rgb(var(--kk-r),var(--kk-g),var(--kk-b));
+  --k-glow:rgba(var(--kr),.4);--k-cross:rgba(var(--kr),.65);
+  transition:--kr-r .9s ease,--kr-g .9s ease,--kr-b .9s ease,--kk-r .9s ease,--kk-g .9s ease,--kk-b .9s ease}
+/* zwart */
+html:root[data-kleur="hemel"]{--kr-r:90;--kr-g:162;--kr-b:222;--kk-r:110;--kk-g:176;--kk-b:230}
+html:root[data-kleur="salie"]{--kr-r:92;--kr-g:160;--kr-b:130;--kk-r:116;--kk-g:178;--kk-b:148}
+/* wit: lijnen/markeringen dieper voor leesbaarheid */
+@media (prefers-color-scheme:light){
+  html:root:not([data-theme="dark"])[data-kleur="hemel"]{--kk-r:47;--kk-g:123;--kk-b:194}
+  html:root:not([data-theme="dark"])[data-kleur="salie"]{--kk-r:66;--kk-g:138;--kk-b:110}}
+html:root[data-theme="light"][data-kleur="hemel"]{--kk-r:47;--kk-g:123;--kk-b:194}
+html:root[data-theme="light"][data-kleur="salie"]{--kk-r:66;--kk-g:138;--kk-b:110}
+/* duidelijker: sterkere waas in de opening en de vaste hoekgloed */
+html:root[data-kleur="hemel"],html:root[data-kleur="salie"]{
+  --plate-held:
+    radial-gradient(50% 42% at 84% 96%,rgba(var(--kr),.32),transparent 72%),
+    radial-gradient(38% 30% at 8% 104%,rgba(var(--kr),.16),transparent 70%),
+    radial-gradient(70% 55% at 50% 0%,#2E2E31 0,rgba(46,46,49,0) 72%),
+    linear-gradient(180deg,#1B1B1D 0%,#121213 55%,#0B0B0C 100%)}
+@media (prefers-color-scheme:light){html:root:not([data-theme="dark"])[data-kleur="hemel"],html:root:not([data-theme="dark"])[data-kleur="salie"]{
+  --plate-held:
+    radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+    radial-gradient(48% 38% at 84% 104%,rgba(var(--kr),.30),transparent 72%),
+    radial-gradient(36% 28% at 6% 108%,rgba(var(--kr),.13),transparent 70%),
+    linear-gradient(180deg,#F7F7F8,#ECECEE)}}
+html:root[data-theme="light"][data-kleur="hemel"],html:root[data-theme="light"][data-kleur="salie"]{
+  --plate-held:
+    radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+    radial-gradient(48% 38% at 84% 104%,rgba(var(--kr),.30),transparent 72%),
+    radial-gradient(36% 28% at 6% 108%,rgba(var(--kr),.13),transparent 70%),
+    linear-gradient(180deg,#F7F7F8,#ECECEE)}
+html:root[data-kleur="hemel"]::before,html:root[data-kleur="salie"]::before{
+  background:radial-gradient(46vw 38vw at 100% 100%,rgba(var(--kr),.24),transparent 70%),radial-gradient(34vw 28vw at 0% 18%,rgba(var(--kr),.11),transparent 70%)}
+@media (prefers-color-scheme:light){html:root:not([data-theme="dark"])[data-kleur="hemel"]::before,html:root:not([data-theme="dark"])[data-kleur="salie"]::before{
+  background:radial-gradient(46vw 38vw at 100% 100%,rgba(var(--kr),.20),transparent 70%),radial-gradient(34vw 28vw at 0% 18%,rgba(var(--kr),.08),transparent 70%)}}
+html:root[data-theme="light"][data-kleur="hemel"]::before,html:root[data-theme="light"][data-kleur="salie"]::before{
+  background:radial-gradient(46vw 38vw at 100% 100%,rgba(var(--kr),.20),transparent 70%),radial-gradient(34vw 28vw at 0% 18%,rgba(var(--kr),.08),transparent 70%)}
+
+/* ==== PRODUCTKAARTEN (Diensten): elk product laat zijn eigen kleur zien ==== */
+.duo__card--core{--pc:#74B294;--pcr:116,178,148}
+.duo__card--flow{--pc:#6EB0E6;--pcr:110,176,230}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .duo__card--core{--pc:#428A6E;--pcr:66,138,110}:root:not([data-theme="dark"]) .duo__card--flow{--pc:#2F7BC2;--pcr:47,123,194}}
+:root[data-theme="light"] .duo__card--core{--pc:#428A6E;--pcr:66,138,110}
+:root[data-theme="light"] .duo__card--flow{--pc:#2F7BC2;--pcr:47,123,194}
+/* in rust: dun streepje in de productkleur boven het label + gekleurd hoekje */
+.duo__card{position:relative;transition:box-shadow .45s var(--ease),border-color .45s var(--ease),background .45s var(--ease)}
+.duo__card .label::before{background:var(--pc)!important;box-shadow:0 0 10px rgba(var(--pcr),.6)}
+.duo__card::after{content:"";position:absolute;right:-1px;bottom:-1px;width:18px;height:18px;border-right:1px solid var(--pc);border-bottom:1px solid var(--pc);pointer-events:none;transition:width .45s var(--ease),height .45s var(--ease)}
+/* geselecteerd (hover / focus): duidelijk in de productkleur */
+.duo__card:hover,.duo__card:focus-visible{border-color:rgba(var(--pcr),.75)!important;
+  box-shadow:inset 0 0 0 1px rgba(var(--pcr),.55),0 0 0 1px rgba(var(--pcr),.25),0 24px 70px -30px rgba(var(--pcr),.65)!important;
+  background-image:radial-gradient(90% 120% at 0% 100%,rgba(var(--pcr),.20),transparent 60%),radial-gradient(60% 80% at 100% 0%,rgba(var(--pcr),.10),transparent 60%)!important}
+.duo__card:hover::after,.duo__card:focus-visible::after{width:42px;height:42px}
+.duo__card:hover .label,.duo__card:focus-visible .label{color:var(--pc)}
+.duo__card:hover .pijl,.duo__card:focus-visible .pijl,.duo__card:hover .duo__ga,.duo__card:focus-visible .duo__ga{color:var(--pc)!important}
+.duo__card:hover .lk-div,.duo__card:focus-visible .lk-div{stroke:var(--pc)!important;fill:var(--pc)!important}
+/* verbinding tussen de kaarten: van salie naar hemelblauw */
+.duo__link{background:linear-gradient(90deg,#74B294,#6EB0E6)!important;opacity:.9}
+.duo__plate .sdot:first-of-type{background:#74B294!important}
+/* sterker: geselecteerde productkaart */
+.duo__card:hover,.duo__card:focus-visible{border-color:var(--pc)!important;
+  box-shadow:inset 0 0 0 1px var(--pc),0 0 0 4px rgba(var(--pcr),.14),0 30px 80px -26px rgba(var(--pcr),.8)!important;
+  background-image:linear-gradient(180deg,rgba(var(--pcr),.22),rgba(var(--pcr),.06) 70%),radial-gradient(90% 120% at 0% 100%,rgba(var(--pcr),.30),transparent 60%)!important}
+.duo__card:hover .label,.duo__card:focus-visible .label{color:var(--pc)!important}
+.duo__card::before{content:"";position:absolute;left:0;right:0;top:0;height:2px;background:var(--pc);transform:scaleX(0);transform-origin:left;transition:transform .55s var(--ease);pointer-events:none}
+.duo__card:hover::before,.duo__card:focus-visible::before{transform:scaleX(1)}
+/* "AIM" in de productkaarten altijd wit, ook in het witte thema */
+.duo__card svg.lk > path{fill:#F7F7F7!important}
+
+/* ==== EÉN SYSTEEM, DRIE STANDEN (vloeiend): duo = salie links + hemelblauw rechts; salie; hemel ==== */
+@property --kr2-r{syntax:'<number>';inherits:true;initial-value:122}
+@property --kr2-g{syntax:'<number>';inherits:true;initial-value:168}
+@property --kr2-b{syntax:'<number>';inherits:true;initial-value:150}
+html:root[data-kleur="duo"],html:root[data-kleur="salie"],html:root[data-kleur="hemel"]{
+  --kr:var(--kr-r),var(--kr-g),var(--kr-b);          /* rechts */
+  --kr2:var(--kr2-r),var(--kr2-g),var(--kr2-b);      /* links  */
+  --k:rgb(var(--kk-r),var(--kk-g),var(--kk-b));
+  --k2:rgb(var(--kr2));
+  --k-glow:rgba(var(--kr),.4);--k-cross:rgba(var(--kr),.65);--hv-lijn:var(--kr);
+  transition:--kr-r 1s ease,--kr-g 1s ease,--kr-b 1s ease,--kr2-r 1s ease,--kr2-g 1s ease,--kr2-b 1s ease,--kk-r 1s ease,--kk-g 1s ease,--kk-b 1s ease;
+  --plate-held:
+    radial-gradient(50% 44% at 88% 96%,rgba(var(--kr),.32),transparent 72%),
+    radial-gradient(50% 44% at 10% 98%,rgba(var(--kr2),.30),transparent 72%),
+    radial-gradient(70% 55% at 50% 0%,#2E2E31 0,rgba(46,46,49,0) 72%),
+    linear-gradient(180deg,#1B1B1D 0%,#121213 55%,#0B0B0C 100%);
+  --plate:var(--plate-held);
+  --panel:radial-gradient(110% 90% at 0% 100%,rgba(var(--kr2),.10),transparent 58%),radial-gradient(110% 90% at 100% 100%,rgba(var(--kr),.10),transparent 58%),linear-gradient(180deg,rgba(40,40,43,.34),rgba(28,28,30,.06) 60%,rgba(28,28,30,0));
+}
+html:root[data-kleur="duo"]{--kr-r:90;--kr-g:162;--kr-b:222;--kr2-r:92;--kr2-g:160;--kr2-b:130;--kk-r:110;--kk-g:176;--kk-b:230}
+html:root[data-kleur="salie"]{--kr-r:92;--kr-g:160;--kr-b:130;--kr2-r:92;--kr2-g:160;--kr2-b:130;--kk-r:116;--kk-g:178;--kk-b:148}
+html:root[data-kleur="hemel"]{--kr-r:90;--kr-g:162;--kr-b:222;--kr2-r:90;--kr2-g:162;--kr2-b:222;--kk-r:110;--kk-g:176;--kk-b:230}
+html:root[data-kleur="duo"]::before,html:root[data-kleur="salie"]::before,html:root[data-kleur="hemel"]::before{
+  background:radial-gradient(46vw 38vw at 100% 100%,rgba(var(--kr),.24),transparent 70%),radial-gradient(40vw 34vw at 0% 100%,rgba(var(--kr2),.20),transparent 70%)!important}
+/* wit */
+@media (prefers-color-scheme:light){
+  html:root:not([data-theme="dark"])[data-kleur="duo"],html:root:not([data-theme="dark"])[data-kleur="hemel"]{--kk-r:47;--kk-g:123;--kk-b:194}
+  html:root:not([data-theme="dark"])[data-kleur="salie"]{--kk-r:66;--kk-g:138;--kk-b:110}
+  html:root:not([data-theme="dark"])[data-kleur="duo"],html:root:not([data-theme="dark"])[data-kleur="salie"],html:root:not([data-theme="dark"])[data-kleur="hemel"]{
+    --plate-held:
+      radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+      radial-gradient(48% 40% at 88% 104%,rgba(var(--kr),.30),transparent 72%),
+      radial-gradient(48% 40% at 10% 106%,rgba(var(--kr2),.28),transparent 72%),
+      linear-gradient(180deg,#F7F7F8,#ECECEE);
+    --panel:radial-gradient(110% 90% at 0% 100%,rgba(var(--kr2),.09),transparent 58%),radial-gradient(110% 90% at 100% 100%,rgba(var(--kr),.09),transparent 58%),linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3))}
+  html:root:not([data-theme="dark"])[data-kleur="duo"]::before,html:root:not([data-theme="dark"])[data-kleur="salie"]::before,html:root:not([data-theme="dark"])[data-kleur="hemel"]::before{
+    background:radial-gradient(46vw 38vw at 100% 100%,rgba(var(--kr),.19),transparent 70%),radial-gradient(40vw 34vw at 0% 100%,rgba(var(--kr2),.16),transparent 70%)!important}}
+html:root[data-theme="light"][data-kleur="duo"],html:root[data-theme="light"][data-kleur="hemel"]{--kk-r:47;--kk-g:123;--kk-b:194}
+html:root[data-theme="light"][data-kleur="salie"]{--kk-r:66;--kk-g:138;--kk-b:110}
+html:root[data-theme="light"][data-kleur="duo"],html:root[data-theme="light"][data-kleur="salie"],html:root[data-theme="light"][data-kleur="hemel"]{
+  --plate-held:
+    radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+    radial-gradient(48% 40% at 88% 104%,rgba(var(--kr),.30),transparent 72%),
+    radial-gradient(48% 40% at 10% 106%,rgba(var(--kr2),.28),transparent 72%),
+    linear-gradient(180deg,#F7F7F8,#ECECEE);
+  --panel:radial-gradient(110% 90% at 0% 100%,rgba(var(--kr2),.09),transparent 58%),radial-gradient(110% 90% at 100% 100%,rgba(var(--kr),.09),transparent 58%),linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3))}
+html:root[data-theme="light"][data-kleur="duo"]::before,html:root[data-theme="light"][data-kleur="salie"]::before,html:root[data-theme="light"][data-kleur="hemel"]::before{
+  background:radial-gradient(46vw 38vw at 100% 100%,rgba(var(--kr),.19),transparent 70%),radial-gradient(40vw 34vw at 0% 100%,rgba(var(--kr2),.16),transparent 70%)!important}
+
+/* ==== ÉÉN KLEUR: ook de FLOW-kaart en de verbinding in salie ==== */
+.duo__card--flow{--pc:#74B294;--pcr:116,178,148}
+@media (prefers-color-scheme:light){:root:not([data-theme="dark"]) .duo__card--flow{--pc:#428A6E;--pcr:66,138,110}}
+:root[data-theme="light"] .duo__card--flow{--pc:#428A6E;--pcr:66,138,110}
+.duo__link{background:#74B294!important}
+.duo__plate .sdot{background:#74B294!important}
+
+/* ==== NATUURLIJKER LICHT: één zachte, brede lichtbron rechtsonder i.p.v. losse stippen ==== */
+html:root[data-kleur="salie"]::before{
+  background:radial-gradient(140vw 80vh at 82% 118%,rgba(var(--kr),.17),rgba(var(--kr),.07) 42%,rgba(var(--kr),.02) 62%,transparent 80%)!important}
+html:root[data-kleur="salie"]{
+  --plate-held:
+    radial-gradient(130% 70% at 74% 112%,rgba(var(--kr),.26),rgba(var(--kr),.10) 40%,rgba(var(--kr),.03) 62%,transparent 80%),
+    radial-gradient(70% 55% at 50% 0%,#2E2E31 0,rgba(46,46,49,0) 72%),
+    linear-gradient(180deg,#1B1B1D 0%,#121213 55%,#0B0B0C 100%);
+  --panel:radial-gradient(140% 110% at 80% 120%,rgba(var(--kr),.10),transparent 65%),linear-gradient(180deg,rgba(40,40,43,.34),rgba(28,28,30,.06) 60%,rgba(28,28,30,0))}
+html:root[data-kleur="salie"] .splash__gloed{background:radial-gradient(closest-side,rgba(var(--kr),.16),rgba(var(--kr),.05) 55%,transparent 85%)!important}
+@media (prefers-color-scheme:light){
+  html:root:not([data-theme="dark"])[data-kleur="salie"]::before{background:radial-gradient(140vw 80vh at 82% 118%,rgba(var(--kr),.14),rgba(var(--kr),.05) 42%,transparent 78%)!important}
+  html:root:not([data-theme="dark"])[data-kleur="salie"]{
+    --plate-held:
+      radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+      radial-gradient(130% 70% at 74% 114%,rgba(var(--kr),.24),rgba(var(--kr),.08) 42%,transparent 78%),
+      linear-gradient(180deg,#F7F7F8,#ECECEE);
+    --panel:radial-gradient(140% 110% at 80% 120%,rgba(var(--kr),.09),transparent 65%),linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3))}}
+html:root[data-theme="light"][data-kleur="salie"]::before{background:radial-gradient(140vw 80vh at 82% 118%,rgba(var(--kr),.14),rgba(var(--kr),.05) 42%,transparent 78%)!important}
+html:root[data-theme="light"][data-kleur="salie"]{
+  --plate-held:
+    radial-gradient(85% 70% at 50% -5%,#FFFFFF 0,#FFFFFF 35%,rgba(255,255,255,0) 78%),
+    radial-gradient(130% 70% at 74% 114%,rgba(var(--kr),.24),rgba(var(--kr),.08) 42%,transparent 78%),
+    linear-gradient(180deg,#F7F7F8,#ECECEE);
+  --panel:radial-gradient(140% 110% at 80% 120%,rgba(var(--kr),.09),transparent 65%),linear-gradient(180deg,rgba(255,255,255,.62),rgba(255,255,255,.3))}
+
+/* ==== HUD-kaders (AIM CORE / AIM FLOW in de opening) helemaal in salie ==== */
+html[data-kleur] .section-box{border-color:rgba(var(--kr),.38)!important;background:linear-gradient(180deg,rgba(var(--kr),.06),rgba(var(--kr),.015))}
+html[data-kleur] .section-box::before,html[data-kleur] .section-box::after{border-color:var(--k)!important}
+html[data-kleur] .hv__puls{background:rgb(var(--kr))!important;box-shadow:0 0 0 2px rgba(var(--kr),.25),0 0 14px 3px rgba(var(--kr),.75),0 0 30px 6px rgba(var(--kr),.35)!important}
+html[data-kleur] .hv__puls::before,html[data-kleur] .hv__puls::after{background:rgba(var(--kr),.5)!important;border-color:rgba(var(--kr),.6)!important}
+html[data-kleur]{--hv-lijn-a:.85}
+
+/* ==== OPBOUW-lijst (en andere onderdeellijsten) duidelijk in salie ==== */
+html[data-kleur] .app__sum .label{color:var(--k)!important;letter-spacing:.14em}
+html[data-kleur] .app__sum .label::before{background:var(--k)!important}
+html[data-kleur] .app__sum li{border-color:rgba(var(--kr),.22)!important;transition:background .25s var(--ease)}
+html[data-kleur] .app__sum li b{color:var(--k)!important;font-weight:600;text-shadow:0 0 12px rgba(var(--kr),.35)}
+html[data-kleur] .app__sum li small{color:rgba(var(--kr),.85)!important}
+html[data-kleur] .app__sum li:hover{background:linear-gradient(90deg,rgba(var(--kr),.14),rgba(var(--kr),0) 80%)}
+html[data-kleur] .app__sum li:hover b{text-shadow:0 0 14px rgba(var(--kr),.6)}
+html[data-kleur] .cfg__legend b{color:var(--k)!important;font-weight:600}
+
+/* ==== TEAMFOTO'S: achtergrond een vleugje salie (vooral de bovenkant, het gezicht blijft natuurlijk) ==== */
+html[data-kleur] .tk__foto{position:relative}
+html[data-kleur] .tk__foto::after{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:radial-gradient(120% 70% at 50% 0%,rgba(var(--kr),.9),rgba(var(--kr),.5) 35%,rgba(var(--kr),0) 70%),linear-gradient(90deg,rgba(var(--kr),.6),rgba(var(--kr),0) 22%,rgba(var(--kr),0) 78%,rgba(var(--kr),.6));
+  mix-blend-mode:color;opacity:.42}
+html[data-kleur] .tk__foto::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:2;
+  background:linear-gradient(180deg,rgba(var(--kr),.14),rgba(var(--kr),0) 55%);mix-blend-mode:soft-light}
+
+/* ==== CONFIGURATOR-VENSTER (voorbeelden): salie in de bediening ==== */
+html[data-kleur] .app .win__dots i,html[data-kleur] .app .win__dots span,html[data-kleur] .app .win__dots::before{background:rgba(var(--kr),.55)!important}
+html[data-kleur] .app .win__r,html[data-kleur] .app .status{color:var(--k)!important}
+html[data-kleur] .app .win__r::before,html[data-kleur] .app .status::before{background:var(--k)!important}
+html[data-kleur] .app__item.is-on{border-left-color:var(--k)!important;box-shadow:inset 3px 0 0 var(--k)!important;background:linear-gradient(90deg,rgba(var(--kr),.12),rgba(var(--kr),0) 70%)!important}
+html[data-kleur] .app__item.is-on svg{color:var(--k);stroke:var(--k)}
+html[data-kleur] .app__opts [aria-pressed="true"],html[data-kleur] .app__opts .is-on,html[data-kleur] .app__opts [aria-checked="true"]{border-color:var(--k)!important;box-shadow:inset 0 -2px 0 var(--k)!important;color:var(--ink)}
+html[data-kleur] .app__opts button:hover{border-color:rgba(var(--kr),.6)!important}
+html[data-kleur] .app__thumb.is-on{box-shadow:inset 0 2px 0 var(--k)!important}
+html[data-kleur] .app__thumb.is-on::after{background:var(--k)!important}
+html[data-kleur] .app__view .tag{background:rgba(var(--kr),.85)!important;color:#fff!important;border-color:transparent!important}
+html[data-kleur] .app__view{box-shadow:inset 0 0 0 1px rgba(var(--kr),.28)}
+html[data-kleur] .app__sum li b,html[data-kleur] .app__sum li span:first-child{color:var(--k)!important}
+html[data-kleur] .app__side .label,html[data-kleur] .app__panel .label{color:rgba(var(--kr),.95)!important}
+
+/* ==== AIM FLOW-demo ("Van eerste klik tot factuur") minder grauw: salie erin ==== */
+html[data-kleur] .flow__plate{background-image:radial-gradient(90% 70% at 20% 100%,rgba(var(--kr),.30),transparent 65%),radial-gradient(70% 60% at 100% 0%,rgba(var(--kr),.14),transparent 60%)!important}
+html[data-kleur] .brw__view{position:relative}
+html[data-kleur] .brw__view::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(70% 60% at 80% 100%,rgba(var(--kr),.22),transparent 70%);mix-blend-mode:multiply}
+html[data-kleur] .proc{background:linear-gradient(180deg,rgba(24,34,30,.94),rgba(16,22,20,.96))!important;border-color:rgba(var(--kr),.45)!important;box-shadow:0 30px 70px -30px rgba(0,0,0,.6),0 0 0 1px rgba(var(--kr),.18),0 0 60px -10px rgba(var(--kr),.30)!important}
+html[data-kleur] .proc .label,html[data-kleur] .proc__lab{color:rgba(var(--kr),.95)!important}
+html[data-kleur] .inbox li{border-color:rgba(var(--kr),.16)!important}
+html[data-kleur] .inbox .i{border-color:rgba(var(--kr),.5)!important;color:rgb(var(--kr))!important;background:rgba(var(--kr),.08)}
+html[data-kleur] .inbox .i__v{background:rgb(var(--kr))!important;border-color:rgb(var(--kr))!important;color:#0E1411!important}
+html[data-kleur] .inbox li.is-klaar{background:linear-gradient(90deg,rgba(var(--kr),.12),rgba(var(--kr),0) 75%)}
+html[data-kleur] .proc .status{color:rgb(var(--kr))!important}
+html[data-kleur] .proc .status::before{background:rgb(var(--kr))!important;box-shadow:0 0 8px rgba(var(--kr),.7)}
+html[data-kleur] .proc .status--new{color:#BFE3D3!important}
+html[data-kleur] .proc__bar i,html[data-kleur] .proc__bar span,html[data-kleur] .proc__bar>*{background:rgb(var(--kr))!important}
+html[data-kleur] .demo__knop{border-color:rgba(var(--kr),.55)!important}
+html[data-kleur] .demo__ring{border-color:rgb(var(--kr))!important;box-shadow:0 0 0 6px rgba(var(--kr),.18)}
+html[data-kleur] .feats svg{color:var(--k);stroke:var(--k)}
+/* de grote tekening/pakket-kaart: lampje en lagen-accent */
+html[data-kleur] .lampje{background:var(--k)!important;box-shadow:0 0 10px rgba(var(--kr),.8)!important}
+html[data-kleur] .cad__props .acc{color:var(--k)!important}
+html[data-kleur] .cad .tab[aria-pressed="true"]{box-shadow:inset 0 -2px 0 var(--k)!important}
+
+/* typ-cursor bij de uitspraken */
+.typ-caret{display:inline-block;width:.55em;height:.95em;margin-left:.08em;vertical-align:-.08em;background:var(--k,currentColor);animation:typ-knip 1s steps(1) infinite}
+.typ-caret.is-uit{animation:none;opacity:0;transition:opacity .4s}
+@keyframes typ-knip{50%{opacity:0}}
+
+/* ==== SOFTWARELOGO'S: drie varianten (kies met ?logos=hover|midden|alles; standaard hover) ==== */
+.soft__list li{transition:color .35s var(--ease),filter .35s var(--ease)}
+.soft__list li svg{transition:color .35s var(--ease),fill .35s var(--ease)}
+/* A · hover: grijs, het logo onder je muis licht op in salie */
+html[data-kleur]:not([data-logos="alles"]) .soft__list li:hover{color:var(--k)!important}
+html[data-kleur]:not([data-logos="alles"]) .soft__list li:hover svg{color:var(--k)!important;fill:var(--k)!important;filter:drop-shadow(0 0 10px rgba(var(--kr),.55))}
+/* B · midden: logo's die door het midden van de band schuiven kleuren vanzelf salie */
+/* C · alles: de hele rij in salie */
+html[data-logos="alles"] .soft__list li,html[data-logos="alles"] .soft__list li svg{color:var(--k)!important;fill:var(--k)!important}
+
+html[data-logos="midden"] .soft__list li.is-mid,html[data-logos="midden"] .soft__list li.is-mid svg{color:var(--k)!important;fill:var(--k)!important}
+html[data-logos="midden"] .soft__list li.is-mid svg{filter:drop-shadow(0 0 10px rgba(var(--kr),.55))}
+
+/* ==== LOGOSTRIP: standaard alles salie, met meer licht ==== */
+html[data-kleur]:not([data-logos]) .soft__list li,html[data-logos="alles"] .soft__list li{color:var(--k)!important;text-shadow:0 0 18px rgba(var(--kr),.45)}
+html[data-kleur]:not([data-logos]) .soft__list li svg,html[data-logos="alles"] .soft__list li svg{color:var(--k)!important;fill:var(--k)!important;filter:drop-shadow(0 0 8px rgba(var(--kr),.7)) drop-shadow(0 0 22px rgba(var(--kr),.35))}
+html[data-kleur]:not([data-logos]) .soft__list li:hover,html[data-logos="alles"] .soft__list li:hover{text-shadow:0 0 22px rgba(var(--kr),.8)}
+/* geen vierkant om de logo's: gloed niet meer op de svg (die knipt af op zijn eigen vak) maar zacht via de kleur */
+.soft__list li svg{filter:none!important;overflow:visible}
+html[data-kleur]:not([data-logos]) .soft__list li,html[data-logos="alles"] .soft__list li{text-shadow:0 0 16px rgba(var(--kr),.4)}
+
+/* ==== DIEP SALIE voor gevulde labels (stoerder, niet te donker) ==== */
+:root{--k-diep:#2F6E55;--k-diep-ink:#F2FAF6}
+html[data-kleur] .app__view .tag,html[data-kleur] .sheet__chips,html[data-kleur] .tag.t-bl,html[data-kleur] .tag.t-tr{background:var(--k-diep)!important;color:var(--k-diep-ink)!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 6px 18px -8px rgba(20,60,44,.6)}
+html[data-kleur] .sheet__chips li{color:var(--k-diep-ink)!important;border-color:rgba(255,255,255,.16)!important}
+/* HUD-kaders: maattekst leesbaar in salie */
+html[data-kleur] .section-box,html[data-kleur] .section-box *{color:var(--k)!important}
+/* onderdeelnummers net iets voller */
+html[data-kleur] .cfg__legend b,html[data-kleur] .app__sum li b{color:var(--k)!important;font-weight:700!important;text-shadow:0 0 14px rgba(var(--kr),.4)}
+
+/* ==== opening: waas weer iets minder groen ==== */
+html:root[data-kleur="salie"]{
+  --plate-held:
+    radial-gradient(130% 70% at 74% 112%,rgba(var(--kr),.15),rgba(var(--kr),.055) 40%,rgba(var(--kr),.015) 62%,transparent 80%),
+    radial-gradient(70% 55% at 50% 0%,#2E2E31 0,rgba(46,46,49,0) 72%),
+    linear-gradient(180deg,#1B1B1D 0%,#121213 55%,#0B0B0C 100%);
+  --hv-warm:rgba(var(--kr),.16);--hv-warm-2:rgba(var(--kr),.06)}
+html:root[data-kleur="salie"]::before{background:radial-gradient(140vw 80vh at 82% 118%,rgba(var(--kr),.11),rgba(var(--kr),.045) 42%,rgba(var(--kr),.012) 62%,transparent 80%)!important}
+
+/* logoband blijft altijd doorlopen, ook met de muis erop */
+.marq:hover .marq__track,.marq:focus-within .marq__track,.marq__track:hover{animation-play-state:running!important}
+
+/* teamfoto's: veel minder salie, alleen een zweem in de bovenhoeken, niet op de mensen */
+html[data-kleur] .tk__foto::after{opacity:.16!important;
+  background:radial-gradient(60% 45% at 0% 0%,rgba(var(--kr),.9),transparent 70%),radial-gradient(60% 45% at 100% 0%,rgba(var(--kr),.9),transparent 70%)!important}
+html[data-kleur] .tk__foto::before{display:none!important}
+
+/* ==== TEAM: compacter + specialiteiten ==== */
+.tq{padding-block:26px!important;gap:clamp(28px,4vw,64px)!important;align-items:center}
+.tq__body{display:grid;gap:20px;align-content:center;min-width:0}
+.tq--r .tq__body{justify-items:end;text-align:right}
+.tq__spec{display:grid;gap:10px}
+.tq__spec-lab{color:var(--mist)}
+.tq__spec ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px;max-width:640px}
+.tq--r .tq__spec ul{justify-content:flex-end}
+.tq__spec li{font:500 12.5px/1 var(--sans);letter-spacing:.01em;padding:8px 12px;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg-2) 70%,transparent);color:var(--ink-2);
+  transition:border-color .25s var(--ease),color .25s var(--ease),background .25s var(--ease)}
+.tq__spec li:hover{border-color:var(--k,var(--line-2));color:var(--ink)}
+.tq__spec li.is-hoofd{border-color:var(--k-diep,var(--line-2));background:var(--k-diep,var(--bg-2));color:var(--k-diep-ink,var(--ink))}
+html[data-kleur] .tq__spec li:not(.is-hoofd){border-color:rgba(var(--kr),.28)}
+html[data-kleur] .tq__spec li:not(.is-hoofd)::before{content:"";display:inline-block;width:5px;height:5px;margin-right:8px;vertical-align:2px;background:var(--k)}
+@media (max-width:760px){.tq--r .tq__body{justify-items:stretch;text-align:right}.tq__spec li{font-size:12px;padding:7px 10px}}
+
+/* logoband rustiger: alleen de iconen salie, de namen neutraal grijs; bij hover wordt de naam ook salie */
+html[data-kleur]:not([data-logos]) .soft__list li{color:var(--ink-2)!important;text-shadow:none!important}
+html[data-kleur]:not([data-logos]) .soft__list li svg{color:var(--k)!important;fill:var(--k)!important;opacity:.9}
+html[data-kleur]:not([data-logos]) .soft__list li:hover{color:var(--k)!important}
+
+/* ==== PAKKETTEN: rust = allemaal gelijk; hover/gekozen = omhoog; midden = het duidelijkst ==== */
+.plan,.plan--rec{transform:none!important;transition:transform .45s var(--ease),box-shadow .45s var(--ease),border-color .45s var(--ease)!important;cursor:pointer}
+.plan:hover,.plan:focus-within,.plan.is-gekozen{transform:translateY(-12px)!important;border-color:rgba(var(--kr),.6)!important;
+  box-shadow:var(--panel-sh),0 0 0 1px rgba(var(--kr),.25),0 40px 80px -40px rgba(var(--kr),.55)!important}
+.plan.is-gekozen{border-color:var(--k)!important}
+html[data-kleur] .plan--rec{border-color:rgba(var(--kr),.7)!important;box-shadow:var(--panel-sh),inset 0 0 0 1px rgba(var(--kr),.3),0 0 60px -12px rgba(var(--kr),.45)!important}
+html[data-kleur] .plan--rec .plan__head{background-image:radial-gradient(120% 120% at 100% 0%,rgba(var(--kr),.35),transparent 60%),radial-gradient(90% 90% at 0% 100%,rgba(var(--kr),.18),transparent 60%)!important}
+html[data-kleur] .plan--rec .flag{background:var(--k-diep)!important;color:var(--k-diep-ink)!important;border-color:transparent!important}
+html[data-kleur] .plan--rec .plan__name{color:var(--on,var(--ink))}
+/* onderzoekscijfer per pakket */
+.plan__bewijs{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;margin:22px 0 22px;padding:14px 0 0;border-top:1px solid var(--line)}
+.plan__bewijs b{grid-row:span 2;font:300 38px/1 var(--display);letter-spacing:-.03em;color:var(--k,var(--ink))}
+.plan__bewijs p{margin:0;font-size:13.5px;line-height:1.45;color:var(--ink-2)}
+.plan__bewijs small{grid-column:2;font:400 10px/1.4 var(--mono);letter-spacing:.06em;color:var(--mist)}
+.plan__bewijs small .label{font-size:9px;color:var(--k,var(--mist));margin-right:4px}
+.plan--rec .plan__bewijs b{font-weight:400}
+@media (max-width:900px){.plan:hover,.plan:focus-within,.plan.is-gekozen{transform:translateY(-6px)!important}}
+
+/* ==== CONTACT: adviesgesprek + vragenflow ==== */
+.ct__next{margin:26px 0 30px;display:grid;gap:12px}
+.ct__next ol{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:n}
+.ct__next li{display:grid;grid-template-columns:30px 1fr;gap:12px;align-items:start;font-size:14.5px;line-height:1.5;color:var(--ink-2)}
+.ct__next li b{display:grid;place-items:center;width:26px;height:26px;font:500 11px/1 var(--mono);border:1px solid var(--k,var(--line-2));color:var(--k,var(--ink))}
+.flow__kop{display:grid;gap:12px;margin-bottom:4px}
+.flow__bar{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.flow__bar i{height:3px;background:var(--line-2);transition:background .35s var(--ease)}
+.flow__bar i.is-aan{background:var(--k,var(--ink))}
+.flow__rij{display:flex;justify-content:space-between;align-items:center}
+.flow__terug{all:unset;cursor:pointer;font:500 11px/1 var(--mono);letter-spacing:.08em;color:var(--mist)}
+.flow__terug:hover,.flow__terug:focus-visible{color:var(--ink)}
+.flow__vraag{margin:0;font:400 clamp(22px,2.2vw,30px)/1.15 var(--display);letter-spacing:-.02em;color:var(--ink)}
+.flow__keuzes{display:grid;gap:10px;margin:6px 0 4px}
+.flow__opt{all:unset;box-sizing:border-box;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:12px;padding:16px 18px;border:1px solid var(--line-2);background:color-mix(in srgb,var(--bg-2) 60%,transparent);
+  font:400 15px/1.3 var(--sans);color:var(--ink);transition:border-color .2s var(--ease),background .2s var(--ease),transform .2s var(--ease)}
+.flow__opt i{font-style:normal;color:var(--mist);transition:transform .2s var(--ease),color .2s var(--ease)}
+.flow__opt:hover,.flow__opt:focus-visible{border-color:var(--k,var(--ink));background:rgba(var(--kr,128,128,128),.10)}
+.flow__opt:hover i,.flow__opt:focus-visible i{transform:translateX(4px);color:var(--k,var(--ink))}
+.flow__opt.is-on{border-color:var(--k,var(--ink));background:rgba(var(--kr,128,128,128),.16)}
+.form [hidden]{display:none!important}
+
+/* ==== AIM FLOW-demo rustiger: neutraal donker glas, salie alleen als klein accent ==== */
+html[data-kleur] .proc{background:linear-gradient(180deg,rgba(24,25,27,.94),rgba(17,18,20,.96))!important;border-color:rgba(255,255,255,.12)!important;
+  box-shadow:0 30px 70px -30px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.04)!important}
+html[data-kleur] .proc .label,html[data-kleur] .proc__lab{color:var(--mist)!important}
+html[data-kleur] .inbox li{border-color:rgba(255,255,255,.07)!important}
+html[data-kleur] .inbox .i{border-color:rgba(255,255,255,.18)!important;color:var(--ink-2)!important;background:transparent!important}
+html[data-kleur] .inbox .i__v{background:rgba(var(--kr),.85)!important;border-color:transparent!important}
+html[data-kleur] .inbox li.is-klaar{background:none!important}
+html[data-kleur] .proc .status{color:var(--ink-2)!important}
+html[data-kleur] .proc .status::before{box-shadow:none!important}
+html[data-kleur] .proc__bar i,html[data-kleur] .proc__bar span,html[data-kleur] .proc__bar>*{background:rgba(255,255,255,.22)!important}
+html[data-kleur] .flow__plate{background-image:radial-gradient(80% 60% at 15% 100%,rgba(var(--kr),.12),transparent 65%)!important}
+
+/* teamkaart: naam, rol en focus iets groter */
+.tq .tk__naam{font-size:22px!important;letter-spacing:-.015em}
+.tq .tk__rol{font-size:11px!important;letter-spacing:.14em}
+.tq .tk__focus{font-size:15.5px!important;line-height:1.45}
+.tq .tk__tekst{padding:16px 18px 20px!important;gap:7px!important}
+@media (max-width:760px){.tq .tk__naam{font-size:19px!important}.tq .tk__focus{font-size:14px!important}}
+
+/* ==== OVER ONS: stappen en cijfers geanimeerd (rustig) ==== */
+ol.steps{position:relative}
+ol.steps.is-wacht::after{content:"";position:absolute;left:0;right:0;top:0;height:1px;background:linear-gradient(90deg,var(--k,var(--ink)),rgba(var(--kr,128,128,128),.35));transform:scaleX(0);transform-origin:left;transition:transform 2.2s cubic-bezier(.4,0,.2,1);pointer-events:none}
+ol.steps.is-in::after{transform:scaleX(1)}
+ol.steps.is-wacht>li{opacity:0;transform:translateY(10px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+ol.steps.is-in>li{opacity:1;transform:none}
+ol.steps.is-in>li:nth-child(1){transition-delay:.15s}ol.steps.is-in>li:nth-child(2){transition-delay:.65s}ol.steps.is-in>li:nth-child(3){transition-delay:1.15s}ol.steps.is-in>li:nth-child(4){transition-delay:1.65s}
+/* lichtje dat daarna rustig over de lijn loopt */
+ol.steps.is-in::before{content:"";position:absolute;top:-2px;left:0;width:90px;height:5px;pointer-events:none;
+  background:radial-gradient(closest-side,rgba(var(--kr,200,200,200),.9),transparent);animation:stap-licht 7s 2.6s ease-in-out infinite;opacity:0}
+@keyframes stap-licht{0%{transform:translateX(-90px);opacity:0}10%{opacity:1}55%{opacity:1}65%,100%{transform:translateX(calc(var(--stappen-b,1200px)));opacity:0}}
+.facts.is-wacht>div{opacity:0;transform:translateY(8px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.facts.is-in>div{opacity:1;transform:none}
+.facts.is-in>div:nth-child(2){transition-delay:.15s}.facts.is-in>div:nth-child(3){transition-delay:.3s}
+.facts b{font-variant-numeric:tabular-nums}
+
+/* ==== AIM FLOW · Webdesign-voorbeeld in AIM-stijl ==== */
+.ks.w2{position:absolute;inset:0;background:radial-gradient(70% 60% at 85% 100%,rgba(var(--kr,120,160,140),.14),transparent 70%),#0a0a0b}
+.w2-br{position:absolute;left:5%;top:7%;width:74%;bottom:9%;border:1px solid rgba(255,255,255,.12);background:#0e0e0f;box-shadow:0 40px 80px -40px rgba(0,0,0,.8);display:flex;flex-direction:column;overflow:hidden}
+.w2-bar{display:flex;align-items:center;gap:5px;height:24px;padding:0 10px;border-bottom:1px solid rgba(255,255,255,.08);background:#141416}
+.w2-bar i{width:6px;height:6px;background:rgba(255,255,255,.2)}
+.w2-bar span{margin:0 auto;font:400 9px/1 var(--mono);letter-spacing:.06em;color:#8a8a90;padding:4px 10px;border:1px solid rgba(255,255,255,.08)}
+.w2-site{flex:1;display:flex;flex-direction:column;min-height:0}
+.w2-nav{display:flex;align-items:center;gap:14px;padding:10px 16px;border-bottom:1px solid rgba(255,255,255,.07)}
+.w2-nav b{display:flex;align-items:center;gap:7px;color:#eee;font:600 11px/1 var(--display);letter-spacing:.16em}
+.w2-nav b svg{width:16px;height:16px;color:#e9e9ea}
+.w2-nav b small{display:block;font:400 7px/1.2 var(--mono);letter-spacing:.18em;color:#8a8a90;text-transform:uppercase;margin-top:2px}
+.w2-nav nav{display:flex;gap:14px;margin-left:auto;font:400 9.5px/1 var(--sans);color:#a6a6ab}
+.w2-nav em{font:500 9px/1 var(--sans);font-style:normal;padding:6px 10px;background:#ececec;color:#0b0b0c}
+.w2-hero{position:relative;flex:1;min-height:0;overflow:hidden}
+.w2-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transform:scale(1.04);animation:w2-zoom 18s ease-in-out infinite alternate}
+@keyframes w2-zoom{to{transform:scale(1.12) translateX(-2%)}}
+.w2-sh{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,11,.92) 0%,rgba(10,10,11,.7) 38%,rgba(10,10,11,.05) 70%),linear-gradient(0deg,rgba(10,10,11,.6),transparent 40%)}
+.w2-txt{position:absolute;left:18px;top:50%;transform:translateY(-50%);max-width:52%}
+.w2-txt small{display:flex;align-items:center;gap:6px;font:500 7.5px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#a6a6ab;margin-bottom:10px}
+.w2-txt small i,.w2-ph small i{width:5px;height:5px;background:var(--k,#7aa)}
+.w2-txt h4{margin:0 0 8px;font:300 clamp(16px,2.3vw,30px)/1.02 var(--display);letter-spacing:-.035em;color:#f2f2f3}
+.w2-txt h4 span{color:#8f8f95}
+.w2-txt p{margin:0 0 12px;font:400 9.5px/1.5 var(--sans);color:#b8b8bc;max-width:30em}
+.w2-bt{display:flex;gap:6px;flex-wrap:wrap}
+.w2-b1{font:500 9px/1 var(--sans);padding:7px 10px;background:#ececec;color:#0b0b0c;box-shadow:inset 0 -2px 0 var(--k,#7aa)}
+.w2-b2{font:500 9px/1 var(--sans);padding:7px 10px;border:1px solid rgba(255,255,255,.25);color:#e6e6e7}
+.w2-tag{position:absolute;right:10px;bottom:10px;font:500 7.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#e6e6e7;padding:5px 7px;background:rgba(10,10,11,.6);border:1px solid rgba(255,255,255,.15)}
+.w2-feat{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(255,255,255,.08)}
+.w2-feat div{padding:9px 14px;font:400 10px/1 var(--sans);color:#d6d6d8;border-right:1px solid rgba(255,255,255,.07);display:flex;gap:8px;align-items:center}
+.w2-feat div:last-child{border-right:0}
+.w2-feat small{font:500 8px/1 var(--mono);color:var(--k,#8a8a90)}
+.w2-ph{position:absolute;right:5%;top:15%;bottom:6%;width:22%;border:1px solid rgba(255,255,255,.16);border-radius:16px;background:#0b0b0c;padding:6px;box-shadow:0 40px 70px -30px rgba(0,0,0,.9)}
+.w2-ph-in{height:100%;border-radius:11px;overflow:hidden;background:#111113;display:flex;flex-direction:column;gap:7px}
+.w2-ph-nav{display:flex;justify-content:space-between;align-items:center;padding:9px 10px 2px}
+.w2-ph-nav b{display:flex;align-items:center;gap:5px;font:600 8px/1 var(--display);letter-spacing:.16em;color:#eee}
+.w2-ph-nav b svg{width:11px;height:11px}
+.w2-ph-nav i{width:12px;height:7px;border-top:1px solid #aaa;border-bottom:1px solid #aaa}
+.w2-ph img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.w2-ph small{display:flex;align-items:center;gap:5px;padding:0 10px;font:500 6.5px/1.3 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:#a6a6ab}
+.w2-ph h5{margin:0;padding:0 10px;font:300 13px/1.08 var(--display);letter-spacing:-.03em;color:#f2f2f3}
+.w2-ph h5 span{color:#8f8f95}
+.w2-ph .w2-b1{margin:auto 10px 12px;text-align:center;font-size:8px}
+@media (prefers-reduced-motion:reduce){.w2-hero img{animation:none}}
+
+/* ==== AIM FLOW · AI-medewerker als demo ==== */
+.ag-th .ag-uit{opacity:0;transform:translateY(8px)}
+.ag-th .ag-in{opacity:1;transform:none;transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.ag-typ{display:none;align-items:center;gap:4px;padding:10px 12px;width:max-content;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03)}
+.ag-typ.is-aan{display:flex}
+.ag-typ.is-uit{margin-left:auto;border-color:rgba(var(--kr,140,180,160),.4);background:rgba(var(--kr,140,180,160),.08)}
+.ag-typ i{width:5px;height:5px;border-radius:50%;background:#a6a6ab;animation:ag-dot 1s infinite ease-in-out}
+.ag-typ.is-uit i{background:var(--k,#9cc)}
+.ag-typ i:nth-child(2){animation-delay:.15s}.ag-typ i:nth-child(3){animation-delay:.3s}
+@keyframes ag-dot{0%,80%,100%{opacity:.25;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.ag-box em{transition:background .3s var(--ease),color .3s var(--ease)}
+.ag-box em.is-ok{background:var(--k-diep,#2f6e55)!important;color:var(--k-diep-ink,#fff)!important}
+html[data-kleur] .ag-ai i{background:var(--k)!important;box-shadow:0 0 8px rgba(var(--kr),.8);animation:ag-puls 1.6s ease-in-out infinite}
+@keyframes ag-puls{50%{opacity:.35}}
+/* automation-demo: stap die nu loopt licht op */
+.au-step{transition:background .4s var(--ease),border-color .4s var(--ease),opacity .4s var(--ease)}
+.au-step.wacht{opacity:.55}
+.au-step.now{border-color:rgba(var(--kr,140,180,160),.7)!important;background:linear-gradient(180deg,rgba(var(--kr,140,180,160),.10),transparent)!important}
+.au-step.now i{background:var(--k,#ddd)!important;color:#0b0b0c!important}
+.au-step.done i{border-color:rgba(var(--kr,140,180,160),.6)!important;color:var(--k,#ddd)!important}
+.au-step.au-flits em{color:var(--k,#ddd)!important}
+html[data-kleur] .au-top em i{background:var(--k)!important;animation:ag-puls 1.6s ease-in-out infinite}
+
+/* AIM FLOW-demo in het witte thema: licht paneel, donkere tekst (was donker paneel met donkere tekst = vaag) */
+@media (prefers-color-scheme:light){
+  html:not([data-theme="dark"])[data-kleur] .proc{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(247,247,248,.97))!important;border-color:rgba(18,18,20,.14)!important;box-shadow:0 30px 70px -36px rgba(18,18,20,.35)!important;color:var(--ink)!important}
+  html:not([data-theme="dark"])[data-kleur] .inbox li{border-color:rgba(18,18,20,.08)!important}
+  html:not([data-theme="dark"])[data-kleur] .inbox .i{border-color:rgba(18,18,20,.2)!important;color:var(--ink-2)!important}
+  html:not([data-theme="dark"])[data-kleur] .proc__bar i,html:not([data-theme="dark"])[data-kleur] .proc__bar span,html:not([data-theme="dark"])[data-kleur] .proc__bar>*{background:rgba(18,18,20,.18)!important}}
+html[data-theme="light"][data-kleur] .proc{background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(247,247,248,.97))!important;border-color:rgba(18,18,20,.14)!important;box-shadow:0 30px 70px -36px rgba(18,18,20,.35)!important;color:var(--ink)!important}
+html[data-theme="light"][data-kleur] .inbox li{border-color:rgba(18,18,20,.08)!important}
+html[data-theme="light"][data-kleur] .inbox .i{border-color:rgba(18,18,20,.2)!important;color:var(--ink-2)!important}
+html[data-theme="light"][data-kleur] .proc__bar i,html[data-theme="light"][data-kleur] .proc__bar span,html[data-theme="light"][data-kleur] .proc__bar>*{background:rgba(18,18,20,.18)!important}
+html[data-theme="light"] .proc *,html:not([data-theme="dark"]) .proc *{text-shadow:none}
+
+
+/* contactformulier in het witte thema: lichte velden, donkere tekst, knop zwart met witte tekst */
+html[data-theme="light"] #form{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(246,246,247,.92))!important;border-color:rgba(18,18,20,.14)!important;color:var(--ink)!important}
+html[data-theme="light"] #form .fld>span,html[data-theme="light"] #form .flow__tel,html[data-theme="light"] #form .flow__terug,html[data-theme="light"] #form .send p{color:var(--mist)!important}
+html[data-theme="light"] #form .flow__vraag{color:var(--ink)!important}
+html[data-theme="light"] #form input,html[data-theme="light"] #form select,html[data-theme="light"] #form textarea{background:#FFFFFF!important;border:1px solid rgba(18,18,20,.18)!important;color:var(--ink)!important;-webkit-text-fill-color:var(--ink)}
+html[data-theme="light"] #form input:focus,html[data-theme="light"] #form select:focus,html[data-theme="light"] #form textarea:focus{border-color:var(--k)!important;outline:none;box-shadow:0 0 0 3px rgba(var(--kr),.18)!important}
+html[data-theme="light"] #form textarea::placeholder,html[data-theme="light"] #form input::placeholder{color:#8A8A90!important;-webkit-text-fill-color:#8A8A90}
+html[data-theme="light"] #form .btn--primary{background:#121214!important;color:#FFFFFF!important;border-color:#121214!important}
+html[data-theme="light"] #form .btn--primary *{color:#FFFFFF!important}
+html[data-theme="light"] #form .flow__opt{background:#FFFFFF!important;border-color:rgba(18,18,20,.16)!important;color:var(--ink)!important}
+html[data-theme="light"] #form .flow__opt.is-on,html[data-theme="light"] #form .flow__opt:hover{border-color:var(--k)!important;background:rgba(var(--kr),.08)!important}
+html[data-theme="light"] #form .flow__bar i{background:rgba(18,18,20,.14)}
+html[data-theme="light"] #form .flow__bar i.is-aan{background:var(--k)}
+html[data-theme="light"] #form .form__vlak,html[data-theme="light"] #form .klop__licht{opacity:.25}
+@media (prefers-color-scheme:light){
+/* contactformulier in het witte thema: lichte velden, donkere tekst, knop zwart met witte tekst */
+html:not([data-theme="dark"]) #form{background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(246,246,247,.92))!important;border-color:rgba(18,18,20,.14)!important;color:var(--ink)!important}
+html:not([data-theme="dark"]) #form .fld>span,html:not([data-theme="dark"]) #form .flow__tel,html:not([data-theme="dark"]) #form .flow__terug,html:not([data-theme="dark"]) #form .send p{color:var(--mist)!important}
+html:not([data-theme="dark"]) #form .flow__vraag{color:var(--ink)!important}
+html:not([data-theme="dark"]) #form input,html:not([data-theme="dark"]) #form select,html:not([data-theme="dark"]) #form textarea{background:#FFFFFF!important;border:1px solid rgba(18,18,20,.18)!important;color:var(--ink)!important;-webkit-text-fill-color:var(--ink)}
+html:not([data-theme="dark"]) #form input:focus,html:not([data-theme="dark"]) #form select:focus,html:not([data-theme="dark"]) #form textarea:focus{border-color:var(--k)!important;outline:none;box-shadow:0 0 0 3px rgba(var(--kr),.18)!important}
+html:not([data-theme="dark"]) #form textarea::placeholder,html:not([data-theme="dark"]) #form input::placeholder{color:#8A8A90!important;-webkit-text-fill-color:#8A8A90}
+html:not([data-theme="dark"]) #form .btn--primary{background:#121214!important;color:#FFFFFF!important;border-color:#121214!important}
+html:not([data-theme="dark"]) #form .btn--primary *{color:#FFFFFF!important}
+html:not([data-theme="dark"]) #form .flow__opt{background:#FFFFFF!important;border-color:rgba(18,18,20,.16)!important;color:var(--ink)!important}
+html:not([data-theme="dark"]) #form .flow__opt.is-on,html:not([data-theme="dark"]) #form .flow__opt:hover{border-color:var(--k)!important;background:rgba(var(--kr),.08)!important}
+html:not([data-theme="dark"]) #form .flow__bar i{background:rgba(18,18,20,.14)}
+html:not([data-theme="dark"]) #form .flow__bar i.is-aan{background:var(--k)}
+html:not([data-theme="dark"]) #form .form__vlak,html:not([data-theme="dark"]) #form .klop__licht{opacity:.25}
+}
+
+/* ==== INTEGRATIES (AIM CORE): twee kolommen kaarten die rustig verticaal schuiven ==== */
+.integ{position:relative;padding-block:clamp(56px,8vw,110px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow:hidden;isolation:isolate}
+.integ::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 70% at 62% 50%,rgba(var(--kr,120,160,140),.14),transparent 70%)}
+.integ__in{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(28px,5vw,80px);align-items:center}
+.integ__l .h2{margin:14px 0 18px}
+.integ__l .lead{max-width:34em;color:var(--ink-2)}
+.integ__lk{display:inline-flex;gap:8px;align-items:center;margin-top:26px;font:500 15px/1 var(--sans);color:var(--k,var(--ink));text-decoration:none}
+.integ__lk span{transition:transform .25s var(--ease)}
+.integ__lk:hover span{transform:translateX(4px)}
+.integ__r{display:grid;grid-template-columns:1fr 1fr;gap:16px;height:460px;-webkit-mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent);mask-image:linear-gradient(180deg,transparent,#000 14%,#000 86%,transparent)}
+.ig-kol{overflow:hidden}
+.ig-kol ul{list-style:none;margin:0;padding:0;display:grid;gap:14px;animation:ig-op 38s linear infinite}
+.ig-kol.ig-neer ul{animation-name:ig-neer;animation-duration:44s}
+@keyframes ig-op{from{transform:translateY(0)}to{transform:translateY(calc(-50% - 7px))}}
+@keyframes ig-neer{from{transform:translateY(calc(-50% - 7px))}to{transform:translateY(0)}}
+.ig-k{display:flex;align-items:center;gap:16px;padding:20px 20px;border:1px solid var(--line-2);background:linear-gradient(180deg,color-mix(in srgb,var(--bg-2) 80%,transparent),color-mix(in srgb,var(--bg) 60%,transparent));
+  box-shadow:inset 0 1px 0 var(--edge,rgba(255,255,255,.05))}
+.ig-ic{flex:none;display:grid;place-items:center;width:48px;height:48px;border:1px solid var(--line-2);color:var(--k,var(--ink))}
+.ig-ic svg{width:24px;height:24px;fill:currentColor}
+.ig-ic b{font:600 11px/1 var(--mono);letter-spacing:.06em;color:var(--k,var(--ink))}
+.ig-t{display:grid;gap:5px;min-width:0}
+.ig-t b{font:500 17px/1.15 var(--display);letter-spacing:-.01em;color:var(--ink)}
+.ig-t small{font:400 10.5px/1.2 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mist)}
+@media (max-width:900px){.integ__in{grid-template-columns:1fr}.integ__r{height:360px}}
+@media (prefers-reduced-motion:reduce){.ig-kol ul{animation:none}}
+
+/* ==== INTEGRATIES · voorbeeld A: hub ==== */
+.integ__r--hub{position:relative;display:block;-webkit-mask-image:none;mask-image:none;height:480px}
+.hub-lijnen{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hub-l{stroke:var(--line-2);stroke-width:1;vector-effect:non-scaling-stroke;transition:stroke .4s}
+.hub-l.is-aan{stroke:var(--k,#9cc);stroke-dasharray:6 6;animation:hub-stroom .7s linear infinite}
+@keyframes hub-stroom{to{stroke-dashoffset:-12}}
+.hub-mid{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:12px;z-index:2}
+.hub-tegel{display:grid;place-items:center;width:112px;height:112px;border:1px solid var(--line-2);background:var(--bg-2);box-shadow:0 30px 60px -30px rgba(0,0,0,.6);transition:border-color .5s,box-shadow .5s,background .5s;position:relative}
+.hub-tegel svg{width:60px;height:60px;filter:grayscale(1) brightness(1.4);transition:filter .5s}
+.hub-tegel.is-gekoppeld{border-color:var(--k,#9cc);background:linear-gradient(160deg,rgba(var(--kr,140,180,160),.22),var(--bg-2));box-shadow:0 0 0 6px rgba(var(--kr,140,180,160),.12),0 0 50px -6px rgba(var(--kr,140,180,160),.6)}
+.hub-tegel.is-gekoppeld svg{filter:none}
+.hub-tekst{font:500 10.5px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--k,var(--mist));min-height:12px}
+.hub-n{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:8px;z-index:1;transition:transform .4s var(--ease)}
+.hub-n .ig-ic{background:var(--bg-2);transition:border-color .4s,box-shadow .4s}
+.hub-n small{font:500 9.5px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--mist);transition:color .4s}
+.hub-n.is-aan{transform:translate(-50%,-50%) scale(1.08)}
+.hub-n.is-aan .ig-ic{border-color:var(--k,#9cc);box-shadow:0 0 24px -4px rgba(var(--kr,140,180,160),.7)}
+.hub-n.is-aan small{color:var(--ink)}
+.hub-n:not(.is-aan) .ig-ic{color:var(--ink-2)}
+
+/* ==== INTEGRATIES · voorbeeld B: stroom ==== */
+.integ__r--stroom{display:grid;grid-template-columns:1fr 1.1fr 1fr;align-items:center;gap:0;height:420px;-webkit-mask-image:none;mask-image:none}
+.st-kol{display:grid;gap:10px}
+.st-kol .label{color:var(--mist);margin-bottom:6px}
+.st-stapel{position:relative;height:240px}
+.st-k{position:absolute;left:0;right:0;top:50%;display:flex;align-items:center;gap:12px;padding:12px 14px;border:1px solid var(--line-2);background:var(--bg-2);opacity:0;transform:translateY(-50%) scale(.9);transition:all .7s var(--ease)}
+.st-k b{font:500 15px/1 var(--display);color:var(--ink)}
+.st-k .ig-ic{width:38px;height:38px}
+.st-k .ig-ic svg{width:20px;height:20px}
+.st-k[data-p="0"]{opacity:1;transform:translateY(-50%);border-color:var(--k,#9cc);box-shadow:0 0 30px -10px rgba(var(--kr,140,180,160),.6)}
+.st-k[data-p="1"]{opacity:.35;transform:translateY(calc(-50% + 78px)) scale(.94)}
+.st-k[data-p="-1"]{opacity:.35;transform:translateY(calc(-50% - 78px)) scale(.94)}
+.st-mid{position:relative;display:grid;grid-template-columns:1fr auto 1fr;align-items:center}
+.st-lijn{width:100%;height:10px}
+.st-lijn line{stroke:var(--line-2);stroke-width:1;vector-effect:non-scaling-stroke}
+.st-mid .hub-tegel{width:96px;height:96px}
+.st-mid .hub-tegel svg{width:50px;height:50px}
+.st-dot{position:absolute;top:50%;width:7px;height:7px;margin-top:-3.5px;background:var(--k,#9cc);box-shadow:0 0 12px rgba(var(--kr,140,180,160),.9);opacity:0}
+.is-loopt .st-dot-in{animation:st-in .9s ease-in forwards}
+.is-loopt .st-dot-uit{animation:st-uit .9s .95s ease-out forwards}
+@keyframes st-in{0%{left:0;opacity:1}100%{left:calc(50% - 52px);opacity:1}}
+@keyframes st-uit{0%{left:calc(50% + 48px);opacity:1}100%{left:100%;opacity:0}}
+.st-o{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--line-2);font:400 14px/1 var(--sans);color:var(--ink-2);transition:all .45s var(--ease)}
+.st-o i{width:7px;height:7px;border:1px solid var(--line-2);transition:all .45s}
+.st-o.is-aan{color:var(--ink);border-color:rgba(var(--kr,140,180,160),.6)}
+.st-o.is-aan i{background:var(--k,#9cc);border-color:transparent}
+@media (max-width:900px){.integ__r--stroom{grid-template-columns:1fr;height:auto;gap:18px}.st-mid{grid-template-columns:1fr auto 1fr}.integ__r--hub{height:400px}}
+
+/* ==== MOBIEL ==== */
+@media (max-width:760px){
+  /* team: uitspraak en specialiteiten gewoon links, chips iets groter om op te tikken */
+  .tq--r .tq__body{justify-items:start!important;text-align:left!important}
+  .tq--r>.tq__q,.tq--r .tq__q{text-align:left!important}
+  .tq--r .tq__spec ul{justify-content:flex-start!important}
+  .tq__spec li{font-size:12.5px!important;padding:8px 11px!important}
+  .tq{gap:16px!important;padding-block:22px!important}
+  /* pakketten: onderzoekscijfer leesbaar */
+  .plan__bewijs{grid-template-columns:auto 1fr;gap:4px 12px}
+  .plan__bewijs b{font-size:32px}
+  .plan__bewijs p{font-size:14px}
+  .plan__bewijs small{font-size:10.5px}
+  .plan:hover,.plan:focus-within,.plan.is-gekozen{transform:none!important}
+  /* contact-vragenflow: ruime tikvlakken */
+  .flow__vraag{font-size:22px!important}
+  .flow__opt{padding:15px 14px!important;font-size:15px!important}
+  .ct__next{margin:20px 0 24px}
+  .ct__next li{font-size:14px}
+  /* integraties (stroom) onder elkaar, compacter */
+  .integ__r--stroom{gap:14px!important}
+  .st-stapel{height:150px!important}
+  .st-k[data-p="1"],.st-k[data-p="-1"]{opacity:0!important}
+  .st-mid .hub-tegel{width:72px!important;height:72px!important}
+  .st-mid .hub-tegel svg{width:38px!important;height:38px!important}
+  .st-uit{grid-template-columns:1fr 1fr;display:grid}
+  .st-uit .label{grid-column:1/-1}
+  .st-o{font-size:13px!important;padding:11px 12px!important}
+  .integ__l .h2{font-size:30px}
+  /* AIM FLOW webdesign-voorbeeld: alleen het browservenster, op volle breedte */
+  .w2-br{left:4%!important;right:4%!important;width:auto!important;top:5%!important;bottom:5%!important}
+  .w2-ph{display:none!important}
+  .w2-nav nav{display:none}
+  .w2-txt{max-width:70%!important;left:12px!important}
+  .w2-txt p{display:none}
+  .w2-feat div{padding:7px 10px;font-size:9px}
+  /* vaste gloed in de hoek kleiner op telefoon */
+  html[data-kleur]::before{background:radial-gradient(120vw 50vh at 90% 110%,rgba(var(--kr),.12),transparent 75%)!important}
+}
+@media (max-width:420px){
+  .tq__spec li{font-size:12px!important;padding:7px 10px!important}
+  .st-uit{grid-template-columns:1fr}
+}
